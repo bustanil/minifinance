@@ -41,8 +41,7 @@
 							</ul>
 						</li>
 					</h:panelGroup>
-					<li><h:link value="Login" rendered="#{not customerLogin.loggedIn}" /></li>
-					<li><h:link value="Register" rendered="#{not customerLogin.loggedIn}" /></li>
+					<li><h:link value="login" rendered="#{not customerLogin.loggedIn}" outcome="login"/></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
