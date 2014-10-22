@@ -9,26 +9,26 @@
 
 	<h:panelGrid columns="2" border="0">
 			No.CIF
-			<h:inputText value="#{cif.cifNo}" />
+			<h:inputText value="#{cifModel.cifNo}" />
 			Password
-			<h:inputText value="#{cif.password}" />
+			<h:inputText value="#{cifModel.password}" />
 			Email
-			<h:inputText value="#{cif.email}" />
+			<h:inputText value="#{cifModel.email}" />
 			Nama Depan
-			<h:inputText value="#{cif.firstName}" />
+			<h:inputText value="#{cifModel.firstName}" />
 			Nama Belakang
-			<h:inputText value="#{cif.lastName}" />
+			<h:inputText value="#{cifModel.lastName}" />
 			Tanggal Lahir
-			<h:inputText value="#{cif.birthDate}" />
+			<h:inputText value="#{cifModel.birthDate}" />
 			Nama Orang Tua
-			<h:inputText value="#{cif.motherMaidenName}" />
+			<h:inputText value="#{cifModel.motherMaidenName}" />
 			Nomor ID
-			<h:inputText value="#{cif.idNumber}" />
+			<h:inputText value="#{cifModel.idNumber}" />
 			Nomor Tipe
-			<h:inputText value="#{cif.idType}" />
+			<h:inputText value="#{cifModel.idType}" />
 	</h:panelGrid>
 
-	<h:commandButton action="#{cif.save}" value="Save" />
+	<h:commandButton action="#{cifModel.addCif}" value="Save" />
 
 
 </body>
