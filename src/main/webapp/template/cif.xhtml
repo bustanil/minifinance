@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head></h:head>
+<body>
+
+	<h:panelGrid columns="2" border="1">
+			No.CIF
+			<h:inputText value="#{cif.cifNo}" />
+			Password
+			<h:inputText value="#{cif.password}" />
+			Email
+			<h:inputText value="#{cif.email}" />
+			Nama Depan
+			<h:inputText value="#{cif.firstName}" />
+			Nama Belakang
+			<h:inputText value="#{cif.lastName}" />
+			Tanggal Lahir
+			<h:inputText value="#{cif.birthDate}" />
+			Nama Orang Tua
+			<h:inputText value="#{cif.motherMaidenName}" />
+			Nomor ID
+			<h:inputText value="#{cif.idNumber}" />
+			Nomor Tipe
+			<h:inputText value="#{cif.idType}" />
+	</h:panelGrid>
+
+	<h:commandButton action="#{cif.save}" value="Submit" />
+
+
+</body>
+</html>
