@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 import id.co.skyforce.finance.model.domain.CIF;
 import id.co.skyforce.finance.util.HibernateUtil;
 
-public class CIfModel {
+public class CIFModel {
 
 	public void addCif(CIF cif) {
 		Transaction transaction = null;
