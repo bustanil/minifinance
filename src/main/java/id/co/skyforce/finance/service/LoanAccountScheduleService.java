@@ -35,22 +35,25 @@ public class LoanAccountScheduleService {
 
 		BigDecimal principal = loanAccount.getPlafond().divide(
 				new BigDecimal(loanAccount.getTenure()));
-		BigDecimal interest = loanAccount.getInterestRate().divide(
-				new BigDecimal(100));
-		BigDecimal installment = principal.add(interest);
+		BigDecimal periodInterestRate = loanAccount.getInterestRate()
+				.divide(new BigDecimal(100))
+				.divide(new BigDecimal(loanAccount.getTenure()));
+		BigDecimal periodInterest = principal.multiply(periodInterestRate);
+		BigDecimal installment = principal.add(periodInterest);
 
 		calendar.setTime(loanAccount.getStartDate());
 
 		for (int i = 0; i < loanAccount.getTenure(); i++) {
 			LoanAccountSchedule loanAccountSchedule = new LoanAccountSchedule();
+			Date dueDate;
 
 			calendar.add(Calendar.MONTH, 1);
-			Date dueDate = calendar.getTime();
+			dueDate = calendar.getTime();
 
 			loanAccountSchedule.setPeriod(Integer.valueOf(i + 1));
 			loanAccountSchedule.setDueDate(dueDate);
 			loanAccountSchedule.setPrincipal(principal);
-			loanAccountSchedule.setInterest(interest);
+			loanAccountSchedule.setInterest(periodInterest);
 			loanAccountSchedule.setInstallment(installment);
 			loanAccountSchedule.setOutstanding(BigDecimal.ZERO);
 			loanAccountSchedule.setPaidStatus('U');
@@ -61,10 +64,44 @@ public class LoanAccountScheduleService {
 		return loanAccountSchedules;
 	}
 
+	// TODO Test
 	private static List<LoanAccountSchedule> generateScheduleWithEffectiveRate(
 			LoanAccount loanAccount) {
-		// TODO Auto-generated method stub
-		return null;
+		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
+		Calendar calendar = Calendar.getInstance();
+
+		BigDecimal installmentBalance = loanAccount.getPlafond();
+		BigDecimal principal = loanAccount.getPlafond().divide(
+				new BigDecimal(loanAccount.getTenure()));
+		BigDecimal periodInterestRate = loanAccount.getInterestRate()
+				.divide(new BigDecimal(100))
+				.divide(new BigDecimal(loanAccount.getTenure()));
+
+		calendar.setTime(loanAccount.getStartDate());
+
+		for (int i = 0; i < loanAccount.getTenure(); i++) {
+			LoanAccountSchedule loanAccountSchedule = new LoanAccountSchedule();
+			BigDecimal periodInterest = periodInterestRate
+					.multiply(installmentBalance);
+			BigDecimal installment = principal.add(periodInterest);
+			Date dueDate;
+
+			calendar.add(Calendar.MONTH, 1);
+			dueDate = calendar.getTime();
+
+			loanAccountSchedule.setPeriod(Integer.valueOf(i + 1));
+			loanAccountSchedule.setDueDate(dueDate);
+			loanAccountSchedule.setPrincipal(principal);
+			loanAccountSchedule.setInterest(periodInterest);
+			loanAccountSchedule.setInstallment(installment);
+			loanAccountSchedule.setOutstanding(BigDecimal.ZERO);
+			loanAccountSchedule.setPaidStatus('U');
+
+			loanAccountSchedules.add(loanAccountSchedule);
+			installmentBalance = installmentBalance.subtract(principal);
+		}
+
+		return loanAccountSchedules;
 	}
 
 	private static List<LoanAccountSchedule> generateScheduleWithAnnuityeRate(
