@@ -1,89 +1,102 @@
 package id.co.skyforce.finance.model.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "loan_account")
 public class LoanAccount {
-
-	private String cifNo;
-	private String password;
-	private String email;
-	private String firstName;
-	private String lastName;
-	private Date birthDate;
-	private String motherMaiden;
-	private String idNumber;
-	private Character idType;
-
-	public String getCifNo() {
-		return cifNo;
+	
+	@Id
+	@Column(name = "account_no", nullable = false)
+	private String accountNo;
+	
+	@Column(name = "plafond", nullable = false)
+	private BigDecimal plafond;
+	
+	@Column(name = "tenure", nullable = false)
+	private Integer tenure;
+	
+	@Column(name = "interest_rate", nullable = false)
+	private BigDecimal interestRate;
+	
+	@Column(name = "interest_type", nullable = false)
+	private Character interestType;
+	
+	@Column(name = "start_date", nullable = false)
+	private Date startDate;
+	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private CIF cif;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "account_no")
+	private Set<LoanAccountSchedule> loanAccountSchedules = new HashSet<>();
+	
+	public String getAccountNo() {
+		return accountNo;
 	}
-
-	public void setCifNo(String cifNo) {
-		this.cifNo = cifNo;
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
 	}
-
-	public String getPassword() {
-		return password;
+	public BigDecimal getPlafond() {
+		return plafond;
 	}
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPlafond(BigDecimal plafond) {
+		this.plafond = plafond;
 	}
-
-	public String getEmail() {
-		return email;
+	public Integer getTenure() {
+		return tenure;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setTenure(Integer tenure) {
+		this.tenure = tenure;
 	}
-
-	public String getFirstName() {
-		return firstName;
+	public BigDecimal getInterestRate() {
+		return interestRate;
 	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setInterestRate(BigDecimal interestRate) {
+		this.interestRate = interestRate;
 	}
-
-	public String getLastName() {
-		return lastName;
+	public Character getInterestType() {
+		return interestType;
 	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setInterestType(Character interestType) {
+		this.interestType = interestType;
 	}
-
-	public Date getBirthDate() {
-		return birthDate;
+	public Date getStartDate() {
+		return startDate;
 	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-
-	public String getMotherMaiden() {
-		return motherMaiden;
+	public CIF getCif() {
+		return cif;
 	}
-
-	public void setMotherMaiden(String motherMaiden) {
-		this.motherMaiden = motherMaiden;
+	public void setCif(CIF cif) {
+		this.cif = cif;
 	}
-
-	public String getIdNumber() {
-		return idNumber;
+	public Set<LoanAccountSchedule> getLoanAccountSchedules() {
+		return loanAccountSchedules;
 	}
-
-	public void setIdNumber(String idNumber) {
-		this.idNumber = idNumber;
+	public void setLoanAccountSchedules(
+			Set<LoanAccountSchedule> loanAccountSchedules) {
+		this.loanAccountSchedules = loanAccountSchedules;
 	}
-
-	public Character getIdType() {
-		return idType;
-	}
-
-	public void setIdType(Character idType) {
-		this.idType = idType;
-	}
+	
 
 }

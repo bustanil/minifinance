@@ -17,19 +17,19 @@ public class LoanAccountSchedule {
 	@Column(name = "due_date", nullable = true)
 	private Date dueDate;
 
-	@Column(name = "principal", nullable = true, precision = 18, scale = 2)
+	@Column(name = "principal", nullable = true, precision = 15, scale = 2)
 	private BigDecimal principal;
 
-	@Column(name = "interest", nullable = true, precision = 18, scale = 2)
+	@Column(name = "interest", nullable = true, precision = 15, scale = 2)
 	private BigDecimal interest;
 
-	@Column(name = "installment", nullable = true, precision = 18, scale = 2)
+	@Column(name = "installment", nullable = true, precision = 15, scale = 2)
 	private BigDecimal installment;
 
-	@Column(name = "outstanding", nullable = true, precision = 18, scale = 2)
+	@Column(name = "outstanding", nullable = true, precision = 15, scale = 2)
 	private BigDecimal outstanding;
 
-	@Column(name = "paid_status", nullable = true, precision = 18, scale = 2)
+	@Column(name = "paid_status", nullable = true)
 	private Character paidStatus;
 
 	public Integer getPeriod() {

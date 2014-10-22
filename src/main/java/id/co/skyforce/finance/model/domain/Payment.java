@@ -1,3 +1,4 @@
+
 package id.co.skyforce.finance.model.domain;
 
 import java.math.BigDecimal;
