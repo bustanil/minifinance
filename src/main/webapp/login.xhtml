@@ -3,24 +3,18 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<ui:composition template="/template/bootstrap.xhtml">
 
+	<ui:define name="content">
 
-<h:head></h:head>
-<body>
-
-	<center>
+		<center>
 		<h4>
 			<h:form>
-
+				<h:messages />
 				<h:inputHidden value="#{loginController.id}" converter="javax.faces.Integer" />
-			Username : <h:inputText value="#{loginController.username}" required="true" label="Username">
-						<f:validateLength minumum="6" maximum="10"/>
-						</h:inputText><br/>
-			Password : <h:inputSecret value="#{loginController.password}" required="true" label="Password">
-						<f:validateLength minumum="6" maximum="10"/>
-						</h:inputSecret><br/>
-				<h:inputHidden value="#{loginController.lastLogin}" converter="javax.faces.DateTime" />
-				
+			Username : <h:inputText value="#{loginController.username}" required="true" label="Username"/><br/>
+			Password : <h:inputSecret value="#{loginController.password}" required="true" label="Password"/><br/>
 				<h:commandButton value="SignIn" action="#{loginController.saveLogin}" />
 
 
@@ -29,5 +23,8 @@
 		</h4>
 	</center>
 
-</body>
+	</ui:define>
+
+</ui:composition>
+
 </html>

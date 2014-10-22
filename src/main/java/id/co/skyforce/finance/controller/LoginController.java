@@ -8,13 +8,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
 
 
 @ManagedBean
+@SessionScoped
 public class LoginController {
 	
 	private Integer id;
@@ -84,19 +87,20 @@ public class LoginController {
 		Session session = HibernateUtil.openSession();
 		Transaction trx = session.beginTransaction();
 		
-		User user = new User();
+		Query query = session.createQuery("from User m where m.username = :username and m.password = :password");
+		query.setString("username", "staff");
+		query.setString("password", "passss");
+		User user = (User) query.uniqueResult();
+
 		
-		user.setId(id);
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setLastLogin(lastLogin);
+		user.setLastLogin(new Date());
 		
 		session.save(user);
 		trx.commit();
 		session.close();
 		
 		this.message = "Login Success!!!";
-		return "index";
+		return "index?faces-redirect=true";
 	}
 	
 	
