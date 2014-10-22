@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head></h:head>
+<body>
+
+	<h:panelGrid columns="2" border="0">
+CIF
+<h:selectOneListbox value="#{blablabla.cif}">
+			<f:selectItem itemValue="#{blablabla.cif}"
+				itemLabel="#{blablabla.cif}" />
+		</h:selectOneListbox>
+		Account No.
+		<h:inputText value="#{blabla.accountNo}" />
+		Plafond
+		<h:inputText value="#{blabla.plafond}" />
+		Tenure
+		<h:inputText value="#{blabla.tenure}" />
+		Interest rate
+		<h:inputText value="#{blabla.interestRate}" />
+		Interest type
+		<h:selectOneListbox value="#{blabla.interestType}">
+			<f:selectItem itemValue="#{blabla.flat}" itemLabel="Flat" />
+			<f:selectItem itemValue="#{blabla.efektif}" itemLabel="Efektif" />
+			<f:selectItem itemValue="#{blabla.anuitas}" itemLabel="Anuitas" />
+		</h:selectOneListbox>
+	</h:panelGrid>
+
+	<h:commandButton action="#{simulate}" value="Simulate" />
+	<br />
+	<br />
+
+	<h:dataTable>
+		<h:column>
+			<f:facet name="header">Period</f:facet>
+			<h:outputText value="#{loanAccountSchedule.period}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Due Date</f:facet>
+			<h:outputText value="#{loanAccountSchedule.dueDate}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Interest</f:facet>
+			<h:outputText value="#{loanAccountSchedule.interest}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Principal</f:facet>
+			<h:outputText value="#{loanAccountSchedule.principal}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Installment</f:facet>
+			<h:outputText value="#{loanAccountSchedule.installment}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">Outstanding</f:facet>
+			<h:outputText value="#{loanAccountSchedule.outstanding}" />
+		</h:column>
+	</h:dataTable>
+
+</body>
+</html>
