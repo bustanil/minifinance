@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<ui:composition>
+	<!-- Static navbar -->
+	<div class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">My Awesome Application</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<h:panelGroup rendered="#{customerLogin.loggedIn}">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown">My Account <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#"><span class="glyphicon glyphicon-user"
+										style="padding-right: 5px"></span>Edit Profile</a></li>
+								<li><a href="#"><span
+										class="glyphicon glyphicon-list-alt"
+										style="padding-right: 5px"></span>Transaction History</a></li>
+								<li class="divider"></li>
+								<li>
+									<h:form style="margin-left: 20px">
+									<h:commandLink action="#{customerLogoutBean.logout}">
+										<span class="glyphicon glyphicon-log-out"
+											style="padding-right: 5px"> </span>Logout
+									</h:commandLink>
+									</h:form>
+								</li>
+							</ul>
+						</li>
+					</h:panelGroup>
+					<li><h:link value="Login" rendered="#{not customerLogin.loggedIn}" /></li>
+					<li><h:link value="Register" rendered="#{not customerLogin.loggedIn}" /></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+		<!--/.container-fluid -->
+	</div>
+</ui:composition>
+</html>
