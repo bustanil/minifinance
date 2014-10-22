@@ -4,14 +4,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -22,19 +19,19 @@ import javax.persistence.Table;
 public class LoanAccount {
 	
 	@Id
-	@Column(name = "account_no", nullable = false)
+	@Column(name = "account_no", length = 6, nullable = false)
 	private String accountNo;
 	
-	@Column(name = "plafond", nullable = false)
+	@Column(name = "plafond", precision = 15, scale = 2, nullable = false)
 	private BigDecimal plafond;
 	
-	@Column(name = "tenure", nullable = false)
+	@Column(name = "tenure", length = 11, nullable = false)
 	private Integer tenure;
 	
-	@Column(name = "interest_rate", nullable = false)
+	@Column(name = "interest_rate", precision = 5, scale = 2, nullable = false)
 	private BigDecimal interestRate;
 	
-	@Column(name = "interest_type", nullable = false)
+	@Column(name = "interest_type", length = 1, nullable = false)
 	private Character interestType;
 	
 	@Column(name = "start_date", nullable = false)
@@ -97,6 +94,4 @@ public class LoanAccount {
 			Set<LoanAccountSchedule> loanAccountSchedules) {
 		this.loanAccountSchedules = loanAccountSchedules;
 	}
-	
-
 }
