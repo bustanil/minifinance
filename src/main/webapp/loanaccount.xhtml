@@ -9,23 +9,23 @@
 
 	<h:panelGrid columns="2" border="0">
 CIF
-<h:selectOneListbox value="#{blablabla.cif}">
-			<f:selectItem itemValue="#{blablabla.cif}"
-				itemLabel="#{blablabla.cif}" />
+<h:selectOneListbox value="#{loanAccount.cif}">
+			<f:selectItem itemValue="#{loanAccount.cif}"
+				itemLabel="#{loanAccount.cif}" />
 		</h:selectOneListbox>
 		Account No.
-		<h:inputText value="#{blabla.accountNo}" />
+		<h:inputText value="#{loanAccount.accountNo}" />
 		Plafond
-		<h:inputText value="#{blabla.plafond}" />
+		<h:inputText value="#{loanAccount.plafond}" />
 		Tenure
-		<h:inputText value="#{blabla.tenure}" />
+		<h:inputText value="#{loanAccount.tenure}" />
 		Interest rate
-		<h:inputText value="#{blabla.interestRate}" />
+		<h:inputText value="#{loanAccount.interestRate}" />
 		Interest type
-		<h:selectOneListbox value="#{blabla.interestType}">
-			<f:selectItem itemValue="#{blabla.flat}" itemLabel="Flat" />
-			<f:selectItem itemValue="#{blabla.efektif}" itemLabel="Efektif" />
-			<f:selectItem itemValue="#{blabla.anuitas}" itemLabel="Anuitas" />
+		<h:selectOneListbox value="#{loanAccount.interestType}">
+			<f:selectItem itemValue="#{loanAccount.flat}" itemLabel="Flat" />
+			<f:selectItem itemValue="#{loanAccount.efektif}" itemLabel="Efektif" />
+			<f:selectItem itemValue="#{loanAccount.anuitas}" itemLabel="Anuitas" />
 		</h:selectOneListbox>
 	</h:panelGrid>
 
@@ -61,7 +61,7 @@ CIF
 	</h:dataTable>
 	<br />
 	<h:commandButton action="#{loanAccountSchedule.save}" value="Save" />
-	
+
 
 </body>
 </html>
