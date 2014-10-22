@@ -3,6 +3,7 @@ package id.co.skyforce.finance.model.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Entity;
@@ -10,22 +11,26 @@ import org.hibernate.annotations.Entity;
 @Entity
 @Table(name = "loan_account_schedule")
 public class LoanAccountSchedule {
-	private CIF cif;
+	@Column(name = "period", nullable = false)
 	private Integer period;
+
+	@Column(name = "due_date", nullable = true)
 	private Date dueDate;
+
+	@Column(name = "principal", nullable = true, precision = 18, scale = 2)
 	private BigDecimal principal;
+
+	@Column(name = "interest", nullable = true, precision = 18, scale = 2)
 	private BigDecimal interest;
+
+	@Column(name = "installment", nullable = true, precision = 18, scale = 2)
 	private BigDecimal installment;
+
+	@Column(name = "outstanding", nullable = true, precision = 18, scale = 2)
 	private BigDecimal outstanding;
+
+	@Column(name = "paid_status", nullable = true, precision = 18, scale = 2)
 	private Character paidStatus;
-
-	public CIF getCif() {
-		return cif;
-	}
-
-	public void setCif(CIF cif) {
-		this.cif = cif;
-	}
 
 	public Integer getPeriod() {
 		return period;
