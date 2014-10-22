@@ -5,6 +5,8 @@ import id.co.skyforce.finance.model.domain.LoanAccountSchedule;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class LoanAccountScheduleService {
@@ -25,19 +27,28 @@ public class LoanAccountScheduleService {
 				"Jenis bunga tidak diketahui. Jenis bunga: 'F'/'E'/'A'");
 	}
 
+	// TODO Test
 	private static List<LoanAccountSchedule> generateScheduleWithFlatRate(
 			LoanAccount loanAccount) {
+		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
+		Calendar calendar = Calendar.getInstance();
+
 		BigDecimal principal = loanAccount.getPlafond().divide(
 				new BigDecimal(loanAccount.getTenure()));
 		BigDecimal interest = loanAccount.getInterestRate().divide(
 				new BigDecimal(100));
 		BigDecimal installment = principal.add(interest);
-		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
+
+		calendar.setTime(loanAccount.getStartDate());
 
 		for (int i = 0; i < loanAccount.getTenure(); i++) {
 			LoanAccountSchedule loanAccountSchedule = new LoanAccountSchedule();
 
+			calendar.add(Calendar.MONTH, 1);
+			Date dueDate = calendar.getTime();
+
 			loanAccountSchedule.setPeriod(Integer.valueOf(i + 1));
+			loanAccountSchedule.setDueDate(dueDate);
 			loanAccountSchedule.setPrincipal(principal);
 			loanAccountSchedule.setInterest(interest);
 			loanAccountSchedule.setInstallment(installment);
