@@ -18,7 +18,7 @@ public class CIfModel {
 		try {
 			transaction = session.beginTransaction();
 			session.save(cif);
-			session.getTransaction().commit();
+			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			transaction.rollback();
@@ -26,14 +26,14 @@ public class CIfModel {
 		session.close();
 	}
 
-	public void deleteCif(int cifId) {
+	public void deleteCif(String cifId) {
 		Transaction transaction = null;
 		Session session = HibernateUtil.openSession();
 		try {
 			transaction = session.beginTransaction();
-			CIF cif = (CIF) session.load(CIF.class, new Integer(cifId));
+			CIF cif = (CIF) session.get(CIF.class, cifId);
 			session.delete(cif);
-			session.getTransaction().commit();
+			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			transaction.rollback();
@@ -76,11 +76,11 @@ public class CIfModel {
 		try {
 			transaction = session.beginTransaction();
 			Query query = session
-					.createQuery("FROM CIF where firstName LIKE :fn || lastName LIKE :ln || birhtDate LIKE :bd || motherMaidenName LIKE :mnm");
+					.createQuery("FROM CIF where firstName LIKE :fn OR lastName LIKE :ln OR birthDate LIKE :bd OR motherMaidenName LIKE :md");
 			query.setString("fn", "%" + search + "%");
 			query.setString("ln", "%" + search + "%");
 			query.setString("bd", "%" + search + "%");
-			query.setString("mnm", "%" + search + "%");
+			query.setString("md", "%" + search + "%");
 			List<CIF>listCifs = query.list();
 			if (listCifs.size() > 0) {
 				return listCifs;
