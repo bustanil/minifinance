@@ -6,8 +6,10 @@
 
 <h:head></h:head>
 <body>
-
-	<h:panelGrid columns="2" border="1">
+	<center>
+		<h:form>
+			<h:messages />
+			<h:panelGrid columns="2" border="1">
 			No.CIF
 			<h:inputText value="#{cif.cifNo}" />
 			Password
@@ -26,10 +28,11 @@
 			<h:inputText value="#{cif.idNumber}" />
 			Nomor Tipe
 			<h:inputText value="#{cif.idType}" />
-	</h:panelGrid>
+			</h:panelGrid>
 
-	<h:commandButton action="#{cif.save}" value="Submit" />
-
+			<h:commandButton action="#{cif.save}" value="Submit" />
+		</h:form>
+	</center>
 
 </body>
 </html>
