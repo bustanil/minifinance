@@ -2,17 +2,49 @@ package id.co.skyforce.finance.model.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cif")
 public class CIF {
 
+	@Id
+	@GeneratedValue
+	@Column(name = "cif_no", length = 8, nullable = false)
 	private String cifNo;
+
+	@Column(name = "password", length = 10, nullable = false)
 	private String password;
+
+	@Column(name = "email", length = 50, nullable = false)
 	private String email;
+
+	@Column(name = "first_name", length = 50, nullable = false)
 	private String firstName;
+
+	@Column(name = "last_name", length = 50, nullable = false)
 	private String lastName;
+
+	@Column(name = "birth_date", length = 50, nullable = false)
 	private Date birthDate;
-	private String motherMaiden;
+
+	@Column(name = "mother_maiden_name", length = 50, nullable = false)
+	private String motherMaidenName;
+
+	@Column(name = "id_number", length = 50, nullable = false)
 	private String idNumber;
+
+	@Column(name = "id_type", length = 50, nullable = false)
 	private Character idType;
+
+	@OneToOne(mappedBy = "cif", cascade = CascadeType.ALL)
+	private LoanAccount loanAccount;
 
 	public String getCifNo() {
 		return cifNo;
@@ -62,12 +94,12 @@ public class CIF {
 		this.birthDate = birthDate;
 	}
 
-	public String getMotherMaiden() {
-		return motherMaiden;
+	public String getMotherMaidenName() {
+		return motherMaidenName;
 	}
 
-	public void setMotherMaiden(String motherMaiden) {
-		this.motherMaiden = motherMaiden;
+	public void setMotherMaidenName(String motherMaidenName) {
+		this.motherMaidenName = motherMaidenName;
 	}
 
 	public String getIdNumber() {
