@@ -4,32 +4,49 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head></h:head>
-<body>
+<ui:composition template="/template/bootstrap.xhtml">
 
-	<h:panelGrid columns="2" border="0">
-			No.CIF
-			<h:inputText value="#{cifModel.cifNo}" />
-			Password
-			<h:inputText value="#{cifModel.password}" />
-			Email
-			<h:inputText value="#{cifModel.email}" />
-			Nama Depan
-			<h:inputText value="#{cifModel.firstName}" />
-			Nama Belakang
-			<h:inputText value="#{cifModel.lastName}" />
-			Tanggal Lahir
-			<h:inputText value="#{cifModel.birthDate}" />
-			Nama Orang Tua
-			<h:inputText value="#{cifModel.motherMaidenName}" />
-			Nomor ID
-			<h:inputText value="#{cifModel.idNumber}" />
-			Nomor Tipe
-			<h:inputText value="#{cifModel.idType}" />
-	</h:panelGrid>
+	<ui:define name="content">
+		<center>
+			<h:form>
+				<h:messages />
 
-	<h:commandButton action="#{cifModel.addCif}" value="Save" />
+				<h:panelGrid columns="2" border="0">
+					<center>No.CIF</center>
+					<h:inputText value="#{CIfModel.cifNo}" />
+					<br />
+					<center>Password</center>
+					<h:inputText value="#{CIfModel.password}" />
+					<br />
+					<center>Email</center>
+					<h:inputText value="#{CIfModel.email}" />
+					<br />
+					<center>Nama Depan</center>
+					<h:inputText value="#{CIfModel.firstName}" />
+					<br />
+					<center>Nama Belakang</center>
+					<h:inputText value="#{CIfModel.lastName}" />
+					<br />
+					<center>Tanggal Lahir</center>
+					<h:inputText value="#{CIfModel.birthDate}" />
+					<br />
+					<center>Nama Orang Tua</center>
+					<h:inputText value="#{CIfModel.motherMaidenName}" />
+					<br />
+					<center>Nomor ID</center>
+					<h:inputText value="#{CIfModel.idNumber}" />
+					<br />
+					<center>Nomor Tipe</center>
+					<h:inputText value="#{CIfModel.idType}" />
+					<br />
+				</h:panelGrid>
+
+				<h:commandButton action="#{CIfModel.addCif}" value="Save" />
 
 
-</body>
+			</h:form>
+		</center>
+	</ui:define>
+
+</ui:composition>
 </html>
