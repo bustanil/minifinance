@@ -4,13 +4,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Entity;
 
 @Entity
 @Table(name = "loan_account_schedule")
 public class LoanAccountSchedule {
+	@Id
 	@Column(name = "period", nullable = false)
 	private Integer period;
 
