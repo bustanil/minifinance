@@ -1,10 +1,14 @@
 package id.co.skyforce.finance.model.domain;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name ="users")
@@ -15,14 +19,15 @@ public class User {
 	@Column(name="id", nullable=false)
 	private Integer id;
 
-	@Column(name="username", length=50, nullable=false)
+	@Column(name="username", length=50, nullable=true)
 	private String username;
 	
-	@Column(name="password", length=8, nullable=false)
+	@Column(name="password", length=8, nullable=true)
 	private String password;
 	
-	@Column(name="last_login", nullable=false)
-	private Long lastLogin;
+	@Column(name="last_login", nullable=true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date lastLogin;
 	
 	
 	public Integer getId() {
@@ -49,12 +54,14 @@ public class User {
 		this.password = password;
 	}
 
-	public Long getLastLogin() {
+	public Date getLastLogin() {
 		return lastLogin;
 	}
 
-	public void setLastLogin(Long lastLogin) {
+	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
 	}
+
+	
 
 }
