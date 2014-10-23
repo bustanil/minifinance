@@ -14,7 +14,11 @@
   
   <mapping class="id.co.skyforce.finance.model.CIF"/>
   <mapping class="id.co.skyforce.finance.model.LoanAccount"/>
+<<<<<<< HEAD
   <mapping class="id.co.skyforce.finance.service.LoanAccountSchedule"/>
+=======
+  <mapping class="id.co.skyforce.finance.model.LoanAccountSchedule"/>
+>>>>>>> branch 'master' of https://github.com/bustanil/minifinance.git
   <mapping class="id.co.skyforce.finance.model.Payment"/>
   <mapping class="id.co.skyforce.finance.model.User"/>
  </session-factory>
