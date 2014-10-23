@@ -16,6 +16,7 @@ import javax.persistence.Table;
 public class LoanAccountSchedule {
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "account_no")
 	private LoanAccount loanAccount;
 
 	@Id
