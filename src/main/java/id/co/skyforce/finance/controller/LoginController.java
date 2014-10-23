@@ -1,7 +1,7 @@
 package id.co.skyforce.finance.controller;
 
-import id.co.skyforce.finance.model.LoginModel;
 import id.co.skyforce.finance.model.domain.User;
+import id.co.skyforce.finance.service.LoginService;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 import java.util.Date;
@@ -69,7 +69,7 @@ public class LoginController {
 			
 			User user;
 
-			LoginModel loginModel = new LoginModel();
+			LoginService loginModel = new LoginService();
 			user = loginModel.checkLogin(username, password);
 			
 			

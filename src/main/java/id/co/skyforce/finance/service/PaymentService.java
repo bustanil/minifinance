@@ -1,4 +1,4 @@
-package id.co.skyforce.finance.model;
+package id.co.skyforce.finance.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import id.co.skyforce.finance.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class PaymentModel {
+public class PaymentService {
 	
 	public List<Payment> getAllPayment() {
 		List<Payment> payments = new ArrayList<>();

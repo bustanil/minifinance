@@ -1,4 +1,4 @@
-package id.co.skyforce.finance.model;
+package id.co.skyforce.finance.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.hibernate.Transaction;
 import id.co.skyforce.finance.model.domain.CIF;
 import id.co.skyforce.finance.util.HibernateUtil;
 
-public class CIFModel {
+public class CIFService {
 
 	public void addCif(CIF cif) {
 		Transaction transaction = null;

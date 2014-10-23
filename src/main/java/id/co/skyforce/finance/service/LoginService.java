@@ -1,4 +1,4 @@
-package id.co.skyforce.finance.model;
+package id.co.skyforce.finance.service;
 
 import id.co.skyforce.finance.model.domain.User;
 import id.co.skyforce.finance.util.HibernateUtil;
@@ -9,7 +9,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class LoginModel {
+public class LoginService {
 	public User checkLogin(String username, String password) {
 		Session session = HibernateUtil.openSession();
 		Transaction trx = session.beginTransaction();
