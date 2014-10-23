@@ -7,42 +7,42 @@
 <h:head></h:head>
 <body>
 
-	<h:dataTable var="c" value="#{}">
+	<h:dataTable var="c" value="#{cIFService.listCifs}">
 		<h:column>
 			<f:facet name="header">No. CIF</f:facet>
-			<h:outputText value="#{CIFController.cifNo}" />
+			<h:outputText value="#{cIFController.cifNo}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Password</f:facet>
-			<h:outputText value="#{CIFController.password}" />
+			<h:outputText value="#{cIFController.password}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Email</f:facet>
-			<h:outputText value="#{CIFController.email}" />
+			<h:outputText value="#{cIFController.email}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Nama Depan</f:facet>
-			<h:outputText value="#{CIFController.firstName}" />
+			<h:outputText value="#{cIFController.firstName}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Nama Belakang</f:facet>
-			<h:outputText value="#{CIFController.lastName}" />
+			<h:outputText value="#{cIFController.lastName}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Tanggal Lahir</f:facet>
-			<h:outputText value="#{CIFController.birthDate}" />
+			<h:outputText value="#{cIFController.birthDate}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Nama Orang Tua</f:facet>
-			<h:outputText value="#{CIFController.motherMaidenName}" />
+			<h:outputText value="#{cIFController.motherMaidenName}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Nomor ID</f:facet>
-			<h:outputText value="#{CIFController.idNumber}" />
+			<h:outputText value="#{cIFController.idNumber}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">Tipe ID</f:facet>
-			<h:outputText value="#{CIFController.idType}" />
+			<h:outputText value="#{cIFController.idType}" />
 		</h:column>
 	</h:dataTable>
 	<br />
