@@ -41,7 +41,7 @@ public class LoanAccount {
 	@PrimaryKeyJoinColumn
 	private CIF cif;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "loanAccount", cascade = CascadeType.ALL)
 	@JoinColumn(name = "account_no")
 	private Set<LoanAccountSchedule> loanAccountSchedules = new HashSet<>();
 
