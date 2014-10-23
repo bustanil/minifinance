@@ -12,6 +12,10 @@ import java.util.List;
 public class LoanAccountScheduleService {
 	public static List<LoanAccountSchedule> generateSchedule(
 			LoanAccount loanAccount) throws Exception {
+		if (loanAccount.getTenure() <= 0) {
+			throw new Exception("Tenure <= 0. Seharusnya > 0.");
+		}
+
 		if (loanAccount.getInterestType() == 'F') {
 			return LoanAccountScheduleService
 					.generateScheduleWithFlatRate(loanAccount);
