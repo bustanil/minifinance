@@ -1,5 +1,6 @@
 package id.co.skyforce.finance.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,7 +14,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "loan_account_schedule")
-public class LoanAccountSchedule {
+public class LoanAccountSchedule implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 223361355186062880L;
+
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "account_no")
