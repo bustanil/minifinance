@@ -1,7 +1,7 @@
 package id.co.skyforce.finance.service;
 
-import id.co.skyforce.finance.model.domain.LoanAccount;
-import id.co.skyforce.finance.model.domain.LoanAccountSchedule;
+import id.co.skyforce.finance.model.LoanAccount;
+import id.co.skyforce.finance.model.LoanAccountSchedule;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

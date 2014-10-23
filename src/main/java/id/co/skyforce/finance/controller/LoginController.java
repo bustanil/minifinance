@@ -1,6 +1,6 @@
 package id.co.skyforce.finance.controller;
 
-import id.co.skyforce.finance.model.domain.User;
+import id.co.skyforce.finance.model.User;
 import id.co.skyforce.finance.service.LoginService;
 import id.co.skyforce.finance.util.HibernateUtil;
 

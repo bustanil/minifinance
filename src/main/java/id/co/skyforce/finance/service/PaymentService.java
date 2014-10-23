@@ -3,7 +3,7 @@ package id.co.skyforce.finance.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.co.skyforce.finance.model.domain.Payment;
+import id.co.skyforce.finance.model.Payment;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 import org.hibernate.Session;

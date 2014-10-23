@@ -7,7 +7,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import id.co.skyforce.finance.model.domain.CIF;
+import id.co.skyforce.finance.model.CIF;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 public class CIFService {

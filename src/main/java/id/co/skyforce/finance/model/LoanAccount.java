@@ -1,4 +1,4 @@
-package id.co.skyforce.finance.model.domain;
+package id.co.skyforce.finance.model;
 
 import java.math.BigDecimal;
 import java.util.Date;

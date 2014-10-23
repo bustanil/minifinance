@@ -1,6 +1,6 @@
 package id.co.skyforce.finance.service;
 
-import id.co.skyforce.finance.model.domain.User;
+import id.co.skyforce.finance.model.User;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 import java.util.Date;
