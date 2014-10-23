@@ -5,12 +5,20 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "loan_account_schedule")
 public class LoanAccountSchedule {
+	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "account_no")
+	private LoanAccount loanAccount;
+
 	@Id
 	@Column(name = "period", nullable = false)
 	private Integer period;
@@ -32,6 +40,14 @@ public class LoanAccountSchedule {
 
 	@Column(name = "paid_status", nullable = true)
 	private Character paidStatus;
+
+	public LoanAccount getLoanAccount() {
+		return loanAccount;
+	}
+
+	public void setLoanAccount(LoanAccount loanAccount) {
+		this.loanAccount = loanAccount;
+	}
 
 	public Integer getPeriod() {
 		return period;
