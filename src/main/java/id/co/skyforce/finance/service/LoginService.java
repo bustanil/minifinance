@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class LoginService {
+	private Integer id;
 	private String username;
 	private String password;
 	
@@ -16,12 +17,13 @@ public class LoginService {
 		Transaction trx = session.beginTransaction();
 		
 		
-		Query query = session.createQuery("from User m where m.username = :username and m.password = :password");
+		Query query = session.createQuery("from User m where m.id =:id and m.username = :username and m.password = :password");
+		query.setString("id", "%" + id + "%");
 		query.setString("username", "%" + username + "%");
 		query.setString("password", "%" + password + "%");
 		user = (User) query.uniqueResult();
 
-		
+		session.saveOrUpdate(user);
 		trx.commit();
 		session.close();
 	}
