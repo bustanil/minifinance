@@ -42,7 +42,7 @@ public class LoanAccount {
 	private CIF cif;
 
 	@OneToMany(mappedBy = "loanAccount", cascade = CascadeType.ALL)
-//	@JoinColumn(name = "account_no")
+	@JoinColumn(name = "account_no")
 	private Set<LoanAccountSchedule> loanAccountSchedules = new HashSet<>();
 
 	public String getAccountNo() {
