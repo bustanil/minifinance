@@ -108,9 +108,89 @@ public class LoanAccountScheduleService {
 		return loanAccountSchedules;
 	}
 
+	// TODO test
 	private static List<LoanAccountSchedule> generateScheduleWithAnnuityeRate(
 			LoanAccount loanAccount) {
-		// TODO Auto-generated method stub
-		return null;
+		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
+		Calendar calendar = Calendar.getInstance();
+
+		BigDecimal installmentBalance = loanAccount.getPlafond();
+		BigDecimal installment = LoanAccountScheduleService
+				.calculateAnnuityInstallment(loanAccount);
+
+		calendar.setTime(loanAccount.getStartDate());
+
+		for (int i = 0; i < loanAccount.getTenure(); i++) {
+			LoanAccountSchedule loanAccountSchedule = new LoanAccountSchedule();
+			BigDecimal periodInterest = LoanAccountScheduleService
+					.calculateAnnuityPeriodInterest(installmentBalance,
+							loanAccount);
+			BigDecimal principal = LoanAccountScheduleService
+					.calculateAnnuityPrincipal(installment, periodInterest);
+			Date dueDate;
+
+			calendar.add(Calendar.MONTH, 1);
+			dueDate = calendar.getTime();
+
+			loanAccountSchedule.setPeriod(Integer.valueOf(i + 1));
+			loanAccountSchedule.setDueDate(dueDate);
+			loanAccountSchedule.setPrincipal(principal);
+			loanAccountSchedule.setInterest(periodInterest);
+			loanAccountSchedule.setInstallment(installment);
+			loanAccountSchedule.setOutstanding(installment);
+			loanAccountSchedule.setPaidStatus('U');
+
+			loanAccountSchedules.add(loanAccountSchedule);
+			installmentBalance = installmentBalance.subtract(principal);
+		}
+
+		return loanAccountSchedules;
+	}
+
+	private static BigDecimal calculateAnnuityInstallment(
+			LoanAccount loanAccount) {
+		/**
+		 * http://jnet99.wordpress.com/2008/12/26/perhitungan-suku-bunga-kredit-
+		 * anuitas/
+		 */
+		BigDecimal installment = loanAccount
+				.getPlafond()
+				.multiply(
+						loanAccount
+								.getInterestRate()
+								.divide(new BigDecimal(loanAccount.getTenure()))
+								.multiply(
+										BigDecimal.ONE.divide(BigDecimal.ONE.subtract(BigDecimal.ONE
+												.divide(BigDecimal.ONE
+														.add(loanAccount
+																.getInterestRate()
+																.divide(new BigDecimal(
+																		100))
+																.divide(new BigDecimal(
+																		loanAccount
+																				.getTenure())))
+														.pow(loanAccount
+																.getTenure()))))));
+
+		return installment;
+	}
+
+	private static BigDecimal calculateAnnuityPeriodInterest(
+			BigDecimal lastBalance, LoanAccount loanAccount) {
+		/**
+		 * http://jnet99.wordpress.com/2008/12/26/perhitungan-suku-bunga-kredit-
+		 * anuitas/
+		 */
+		BigDecimal periodInterest = lastBalance.multiply(loanAccount
+				.getInterestRate().divide(
+						new BigDecimal(100).divide(new BigDecimal(loanAccount
+								.getTenure()))));
+
+		return periodInterest;
+	}
+
+	private static BigDecimal calculateAnnuityPrincipal(BigDecimal installment,
+			BigDecimal periodInterest) {
+		return installment.subtract(periodInterest);
 	}
 }
