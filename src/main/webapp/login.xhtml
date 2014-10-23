@@ -15,7 +15,8 @@
 				<h:inputHidden value="#{loginController.id}" converter="javax.faces.Integer" />
 			Username : <h:inputText value="#{loginController.username}" required="true" label="Username"/><br/>
 			Password : <h:inputSecret value="#{loginController.password}" required="true" label="Password"/><br/>
-				<h:commandButton value="SignIn" action="#{loginController.saveLogin}" />
+				<h:inputHidden value="#{loginController.lastLogin}" converter="javax.faces.DateTime" />
+				<h:commandButton value="SignIn" action="#{loginController.checkLogin}" />
 
 
 
