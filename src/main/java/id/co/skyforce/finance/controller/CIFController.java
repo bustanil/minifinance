@@ -1,8 +1,15 @@
 package id.co.skyforce.finance.controller;
 
+import id.co.skyforce.finance.model.CIF;
+import id.co.skyforce.finance.util.HibernateUtil;
+
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 @ManagedBean
 public class CIFController {
@@ -16,6 +23,66 @@ public class CIFController {
 	private String motherMaidenName;
 	private String idNumber;
 	private Character idType;
+	
+	public CIFController(){
+		String cifNo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cif_no");
+		
+		if (cifNo != null){
+			Session session = HibernateUtil.openSession();
+			Transaction trx = session.beginTransaction();
+			
+			CIF cif = (CIF) session.get(CIF.class, cifNo);
+			
+			this.cifNo = cif.getCifNo();
+			this.password = cif.getPassword();
+			this.email = cif.getEmail();
+			this.firstName = cif.getFirstName();
+			this.lastName = cif.getLastName();
+			this.birthDate = cif.getBirthDate();
+			this.motherMaidenName = cif.getMotherMaidenName();
+			this.idNumber = cif.getIdNumber();
+			this.idType = cif.getIdType();
+			
+			trx.commit();
+			session.close();
+		}
+	}
+	
+	public String save(){
+		Session session = HibernateUtil.openSession();
+		Transaction trx = session.beginTransaction();
+		
+		CIF cif = new CIF();
+		
+		cif.setCifNo(cifNo);
+		cif.setPassword(password);
+		cif.setEmail(email);
+		cif.setFirstName(firstName);
+		cif.setLastName(lastName);
+		cif.setBirthDate(birthDate);
+		cif.setMotherMaidenName(motherMaidenName);
+		cif.setIdNumber(idNumber);
+		cif.setIdType(idType);
+		
+		session.saveOrUpdate(cif);
+		trx.commit();
+		session.close();
+		
+		return "";
+	}
+	
+	public String delete(){
+		
+		Session session = HibernateUtil.openSession();
+		Transaction trx = session.beginTransaction();
+		
+		CIF cif = (CIF) session.get(CIF.class, cifNo);
+		
+		session.delete(cif);
+		trx.commit();
+		session.close();
+		return "";
+	}
 
 	public String getCifNo() {
 		return cifNo;
