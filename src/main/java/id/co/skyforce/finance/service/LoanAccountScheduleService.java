@@ -55,7 +55,7 @@ public class LoanAccountScheduleService {
 			loanAccountSchedule.setPrincipal(principal);
 			loanAccountSchedule.setInterest(periodInterest);
 			loanAccountSchedule.setInstallment(installment);
-			loanAccountSchedule.setOutstanding(BigDecimal.ZERO);
+			loanAccountSchedule.setOutstanding(installment);
 			loanAccountSchedule.setPaidStatus('U');
 
 			loanAccountSchedules.add(loanAccountSchedule);
@@ -94,7 +94,7 @@ public class LoanAccountScheduleService {
 			loanAccountSchedule.setPrincipal(principal);
 			loanAccountSchedule.setInterest(periodInterest);
 			loanAccountSchedule.setInstallment(installment);
-			loanAccountSchedule.setOutstanding(BigDecimal.ZERO);
+			loanAccountSchedule.setOutstanding(installment);
 			loanAccountSchedule.setPaidStatus('U');
 
 			loanAccountSchedules.add(loanAccountSchedule);
