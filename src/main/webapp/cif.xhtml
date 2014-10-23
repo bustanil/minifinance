@@ -13,36 +13,38 @@
 
 				<h:panelGrid columns="2" border="0">
 					<center>No.CIF</center>
-					<h:inputText value="#{CIFController.cifNo}" />
+					<h:inputText value="#{cIFController.cifNo}" />
 					<br />
 					<center>Password</center>
-					<h:inputText value="#{CIFController.password}" />
+					<h:inputText value="#{cIFController.password}" />
 					<br />
 					<center>Email</center>
-					<h:inputText value="#{CIFController.email}" />
+					<h:inputText value="#{cIFController.email}" />
 					<br />
 					<center>Nama Depan</center>
-					<h:inputText value="#{CIFController.firstName}" />
+					<h:inputText value="#{cIFController.firstName}" />
 					<br />
 					<center>Nama Belakang</center>
-					<h:inputText value="#{CIFController.lastName}" />
+					<h:inputText value="#{cIFController.lastName}" />
 					<br />
 					<center>Tanggal Lahir</center>
-					<h:inputText value="#{CIFController.birthDate}" />
+					<h:inputText value="#{cIFController.birthDate}">
+						<f:convertDateTime pattern="yyyy/MM/dd" />
+					</h:inputText>
 					<br />
 					<center>Nama Orang Tua</center>
-					<h:inputText value="#{CIFController.motherMaidenName}" />
+					<h:inputText value="#{cIFController.motherMaidenName}" />
 					<br />
 					<center>Nomor ID</center>
-					<h:inputText value="#{CIFController.idNumber}" />
+					<h:inputText value="#{cIFController.idNumber}" />
 					<br />
 					<center>Tipe ID</center>
-					<h:inputText value="#{CIFController.idType}" />
+					<h:inputText value="#{cIFController.idType}" />
 					<br />
 				</h:panelGrid>
 
 
-				<h:commandButton action="#{CIFModel.addCif}" value="Save" />
+				<h:commandButton action="#{cIFService.addCif}" value="Save" />
 
 
 			</h:form>
