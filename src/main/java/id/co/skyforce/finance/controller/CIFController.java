@@ -1,6 +1,7 @@
 package id.co.skyforce.finance.controller;
 
 import id.co.skyforce.finance.model.CIF;
+import id.co.skyforce.finance.service.CIFService;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 import java.util.Date;
@@ -23,6 +24,7 @@ public class CIFController {
 	private String motherMaidenName;
 	private String idNumber;
 	private Character idType;
+	private static CIFService service;
 	
 	public CIFController(){
 		String cifNo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cif_no");
@@ -49,11 +51,10 @@ public class CIFController {
 	}
 	
 	public String save(){
-		Session session = HibernateUtil.openSession();
+/*		Session session = HibernateUtil.openSession();
 		Transaction trx = session.beginTransaction();
-		
-		CIF cif = new CIF();
-		
+		*/
+		CIF cif = new CIF();		
 		cif.setCifNo(cifNo);
 		cif.setPassword(password);
 		cif.setEmail(email);
@@ -63,24 +64,23 @@ public class CIFController {
 		cif.setMotherMaidenName(motherMaidenName);
 		cif.setIdNumber(idNumber);
 		cif.setIdType(idType);
-		
-		session.saveOrUpdate(cif);
+		service.addUpdateCif(cif);
+/*		session.saveOrUpdate(cif);
 		trx.commit();
-		session.close();
+		session.close();*/
 		
 		return "";
 	}
 	
-	public String delete(){
-		
-		Session session = HibernateUtil.openSession();
+	public String delete(){		
+		/*Session session = HibernateUtil.openSession();
 		Transaction trx = session.beginTransaction();
-		
-		CIF cif = (CIF) session.get(CIF.class, cifNo);
-		
-		session.delete(cif);
+		*/
+		//CIF cif = (CIF) session.get(CIF.class, cifNo);
+		service.deleteCif(cifNo);
+		/*session.delete(cif);
 		trx.commit();
-		session.close();
+		session.close();*/
 		return "";
 	}
 

@@ -11,6 +11,20 @@ import id.co.skyforce.finance.model.CIF;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 public class CIFService {
+	
+	public void addUpdateCif(CIF cif) {
+		Transaction transaction = null;
+		Session session = HibernateUtil.openSession();
+		try {
+			transaction = session.beginTransaction();
+			session.saveOrUpdate(cif);
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			transaction.rollback();
+		}
+		session.close();
+	}
 
 	public void addCif(CIF cif) {
 		Transaction transaction = null;
