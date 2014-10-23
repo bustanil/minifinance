@@ -26,7 +26,7 @@ public class CIFService {
 		session.close();
 	}
 
-	public void addCif(CIF cif) {
+	public String addCif(CIF cif) {
 		Transaction transaction = null;
 		Session session = HibernateUtil.openSession();
 		try {
@@ -38,6 +38,7 @@ public class CIFService {
 			transaction.rollback();
 		}
 		session.close();
+		return "/shop/listcif";
 	}
 
 	public void deleteCif(String cifId) {
@@ -95,7 +96,7 @@ public class CIFService {
 			query.setString("ln", "%" + search + "%");
 			query.setString("bd", "%" + search + "%");
 			query.setString("md", "%" + search + "%");
-			List<CIF>listCifs = query.list();
+			List<CIF> listCifs = query.list();
 			if (listCifs.size() > 0) {
 				return listCifs;
 			}
