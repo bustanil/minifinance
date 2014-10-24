@@ -10,23 +10,37 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class LoginService {
-	private Integer id;
-	private String username;
-	private String password;
 	
-	public void login (User user) {
+	public void login (User inputUser) {
 		Session session = HibernateUtil.openSession();
 		Transaction trx = session.beginTransaction();
 		
 		
-		Query query = session.createQuery("from User m where m.id =:id and m.username = :username and m.password = :password");
-		query.setString("id", "%" + id + "%");
-		query.setString("username", "%" + username + "%");
-		query.setString("password", "%" + password + "%");
-		user = (User) query.uniqueResult();
+		Query query = session.createQuery("from User m where m.username = :username and m.password = :password");
+		query.setString("username", inputUser.getUsername());
+		query.setString("password", inputUser.getPassword());
+		User user = (User) query.uniqueResult();
+		
+		if (user != null){
+			user.setLastLogin(inputUser.getLastLogin());
+			session.saveOrUpdate(user);
+		}
 
-		session.saveOrUpdate(user);
 		trx.commit();
+		session.close();
+	}
+	
+	public void loginDifferentUSer(User user){
+		Transaction transaction = null;
+		Session session = HibernateUtil.openSession();
+		try {
+			transaction = session.beginTransaction();
+			session.saveOrUpdate(user);
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			transaction.rollback();
+		}
 		session.close();
 	}
 

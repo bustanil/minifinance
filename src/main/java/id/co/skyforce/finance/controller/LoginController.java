@@ -76,37 +76,16 @@ public class LoginController {
 		this.user = user;
 	}
 
-//	public LoginController() {
-//		String id = FacesContext.getCurrentInstance().getExternalContext()
-//				.getRequestParameterMap().get("id");
-//
-//		if (id != null) {
-//			Integer userId = Integer.valueOf(id);
-//
-//			Session session = HibernateUtil.openSession();
-//			Transaction trx = session.beginTransaction();
-//			
-//			User user = (User) session.get(User.class, userId);
-//			this.id = user.getId();
-//			this.username = user.getUsername();
-//			this.password = user.getPassword();
-//			this.lastLogin = user.getLastLogin();
-//			
-//			trx.commit();
-//			session.close();
-//		}
-//
-//	}
 
-	public String checkLogin(){
-		
+	public void checkLogin(){
+		user.setId(id);
+		user.setUsername(username);
+		user.setPassword(password);
 		user.setLastLogin(new Date());
 		
 		LoginService loginService = new LoginService();
 		loginService.login(user);
 		
-
-		return "index?faces-redirect=true";
 	}
 
 }
