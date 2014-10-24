@@ -10,30 +10,29 @@ import java.util.Date;
 import java.util.List;
 
 public class LoanAccountScheduleService {
-	public static List<LoanAccountSchedule> generateSchedule(
-			LoanAccount loanAccount) throws Exception {
+	public static void generateSchedule(LoanAccount loanAccount)
+			throws Exception {
 		if (loanAccount.getTenure() <= 0) {
 			throw new Exception("Tenure <= 0. Seharusnya > 0.");
 		}
 
 		if (loanAccount.getInterestType() == 'F') {
-			return LoanAccountScheduleService
+			LoanAccountScheduleService
 					.generateScheduleWithFlatRate(loanAccount);
 		} else if (loanAccount.getInterestType() == 'E') {
-			return LoanAccountScheduleService
+			LoanAccountScheduleService
 					.generateScheduleWithEffectiveRate(loanAccount);
 		} else if (loanAccount.getInterestType() == 'A') {
-			return LoanAccountScheduleService
+			LoanAccountScheduleService
 					.generateScheduleWithAnnuityeRate(loanAccount);
+		} else {
+			throw new Exception(
+					"Jenis bunga tidak diketahui. Jenis bunga: 'F'/'E'/'A'");
 		}
-
-		throw new Exception(
-				"Jenis bunga tidak diketahui. Jenis bunga: 'F'/'E'/'A'");
 	}
 
 	// TODO Test
-	private static List<LoanAccountSchedule> generateScheduleWithFlatRate(
-			LoanAccount loanAccount) {
+	private static void generateScheduleWithFlatRate(LoanAccount loanAccount) {
 		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
 		Calendar calendar = Calendar.getInstance();
 
@@ -67,11 +66,11 @@ public class LoanAccountScheduleService {
 			loanAccountSchedules.add(loanAccountSchedule);
 		}
 
-		return loanAccountSchedules;
+		loanAccount.setLoanAccountSchedules(loanAccountSchedules);
 	}
 
 	// TODO Test
-	private static List<LoanAccountSchedule> generateScheduleWithEffectiveRate(
+	private static void generateScheduleWithEffectiveRate(
 			LoanAccount loanAccount) {
 		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
 		Calendar calendar = Calendar.getInstance();
@@ -108,12 +107,11 @@ public class LoanAccountScheduleService {
 			installmentBalance = installmentBalance.subtract(principal);
 		}
 
-		return loanAccountSchedules;
+		loanAccount.setLoanAccountSchedules(loanAccountSchedules);
 	}
 
 	// TODO test
-	private static List<LoanAccountSchedule> generateScheduleWithAnnuityeRate(
-			LoanAccount loanAccount) {
+	private static void generateScheduleWithAnnuityeRate(LoanAccount loanAccount) {
 		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
 		Calendar calendar = Calendar.getInstance();
 
@@ -148,7 +146,7 @@ public class LoanAccountScheduleService {
 			installmentBalance = installmentBalance.subtract(principal);
 		}
 
-		return loanAccountSchedules;
+		loanAccount.setLoanAccountSchedules(loanAccountSchedules);
 	}
 
 	private static BigDecimal calculateAnnuityInstallment(
