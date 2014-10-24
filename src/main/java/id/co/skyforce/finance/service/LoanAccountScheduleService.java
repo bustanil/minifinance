@@ -62,6 +62,7 @@ public class LoanAccountScheduleService {
 			loanAccountSchedule.setInstallment(installment);
 			loanAccountSchedule.setOutstanding(installment);
 			loanAccountSchedule.setPaidStatus('U');
+			loanAccountSchedule.setLoanAccount(loanAccount);
 
 			loanAccountSchedules.add(loanAccountSchedule);
 		}
@@ -101,6 +102,7 @@ public class LoanAccountScheduleService {
 			loanAccountSchedule.setInstallment(installment);
 			loanAccountSchedule.setOutstanding(installment);
 			loanAccountSchedule.setPaidStatus('U');
+			loanAccountSchedule.setLoanAccount(loanAccount);
 
 			loanAccountSchedules.add(loanAccountSchedule);
 			installmentBalance = installmentBalance.subtract(principal);
@@ -140,6 +142,7 @@ public class LoanAccountScheduleService {
 			loanAccountSchedule.setInstallment(installment);
 			loanAccountSchedule.setOutstanding(installment);
 			loanAccountSchedule.setPaidStatus('U');
+			loanAccountSchedule.setLoanAccount(loanAccount);
 
 			loanAccountSchedules.add(loanAccountSchedule);
 			installmentBalance = installmentBalance.subtract(principal);
