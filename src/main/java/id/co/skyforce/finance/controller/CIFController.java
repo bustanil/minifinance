@@ -25,16 +25,17 @@ public class CIFController {
 	private String idNumber;
 	private Character idType;
 	private static CIFService service;
-	
-	public CIFController(){
-		String cifNo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cif_no");
-		
-		if (cifNo != null){
+
+	public CIFController() {
+		String cifNo = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap().get("cif_no");
+
+		if (cifNo != null) {
 			Session session = HibernateUtil.openSession();
 			Transaction trx = session.beginTransaction();
-			
+
 			CIF cif = (CIF) session.get(CIF.class, cifNo);
-			
+
 			this.cifNo = cif.getCifNo();
 			this.password = cif.getPassword();
 			this.email = cif.getEmail();
@@ -44,17 +45,15 @@ public class CIFController {
 			this.motherMaidenName = cif.getMotherMaidenName();
 			this.idNumber = cif.getIdNumber();
 			this.idType = cif.getIdType();
-			
+
 			trx.commit();
 			session.close();
 		}
 	}
-	
-	public String save(){
-/*		Session session = HibernateUtil.openSession();
-		Transaction trx = session.beginTransaction();
-		*/
-		CIF cif = new CIF();		
+
+	public void save() {
+		service = new CIFService();
+		CIF cif = new CIF();
 		cif.setCifNo(cifNo);
 		cif.setPassword(password);
 		cif.setEmail(email);
@@ -65,22 +64,18 @@ public class CIFController {
 		cif.setIdNumber(idNumber);
 		cif.setIdType(idType);
 		service.addUpdateCif(cif);
-/*		session.saveOrUpdate(cif);
-		trx.commit();
-		session.close();*/
-		
-		return "";
 	}
-	
-	public String delete(){		
-		/*Session session = HibernateUtil.openSession();
-		Transaction trx = session.beginTransaction();
-		*/
-		//CIF cif = (CIF) session.get(CIF.class, cifNo);
+
+	public String delete() {
+		/*
+		 * Session session = HibernateUtil.openSession(); Transaction trx =
+		 * session.beginTransaction();
+		 */
+		// CIF cif = (CIF) session.get(CIF.class, cifNo);
 		service.deleteCif(cifNo);
-		/*session.delete(cif);
-		trx.commit();
-		session.close();*/
+		/*
+		 * session.delete(cif); trx.commit(); session.close();
+		 */
 		return "";
 	}
 
