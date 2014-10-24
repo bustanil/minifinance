@@ -1,9 +1,12 @@
 package id.co.skyforce.finance.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,7 +46,7 @@ public class LoanAccount {
 
 	@OneToMany(mappedBy = "loanAccount", cascade = CascadeType.ALL)
 //	@JoinColumn(name = "account_no")
-	private Set<LoanAccountSchedule> loanAccountSchedules = new HashSet<>();
+	private List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<>();
 
 	public String getAccountNo() {
 		return accountNo;
@@ -101,12 +104,12 @@ public class LoanAccount {
 		this.cif = cif;
 	}
 
-	public Set<LoanAccountSchedule> getLoanAccountSchedules() {
+	public List<LoanAccountSchedule> getLoanAccountSchedules() {
 		return loanAccountSchedules;
 	}
 
 	public void setLoanAccountSchedules(
-			Set<LoanAccountSchedule> loanAccountSchedules) {
+			List<LoanAccountSchedule> loanAccountSchedules) {
 		this.loanAccountSchedules = loanAccountSchedules;
 	}
 }
