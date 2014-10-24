@@ -7,12 +7,13 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import id.co.skyforce.finance.controller.CIFController;
 import id.co.skyforce.finance.model.CIF;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 public class CIFService {
 	
-	public void addUpdateCif(CIF cif) {
+	public void addUpdateCif(CIFController cif) {
 		Transaction transaction = null;
 		Session session = HibernateUtil.openSession();
 		try {
