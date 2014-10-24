@@ -1,3 +1,4 @@
+
 package id.co.skyforce.finance.controller;
 
 import id.co.skyforce.finance.model.CIF;
@@ -75,36 +76,37 @@ public class LoginController {
 		this.user = user;
 	}
 
-	public void checkLogin(){
+//	public LoginController() {
+//		String id = FacesContext.getCurrentInstance().getExternalContext()
+//				.getRequestParameterMap().get("id");
+//
+//		if (id != null) {
+//			Integer userId = Integer.valueOf(id);
+//
+//			Session session = HibernateUtil.openSession();
+//			Transaction trx = session.beginTransaction();
+//			
+//			User user = (User) session.get(User.class, userId);
+//			this.id = user.getId();
+//			this.username = user.getUsername();
+//			this.password = user.getPassword();
+//			this.lastLogin = user.getLastLogin();
+//			
+//			trx.commit();
+//			session.close();
+//		}
+//
+//	}
 
-//				user.setLastLogin(new Date());
-				
-				
-//			user.setId(id);
-//			user.setLastLogin(new Date());
-//			user.setPassword(password);
-//			user.setUsername(username);
-			LoginService loginService = new LoginService();
-//			loginService.login(user);
-//			loginService.loginDifferentUser(user);
-			
-			if (user.getId() != null){
-				user.setLastLogin(new Date());
-				loginService.login(user);
-			}
-			else if (user.getId() == null){
-				user.setId(id);
-				user.setLastLogin(new Date());
-				user.setPassword(password);
-				user.setUsername(username);
-				loginService.loginDifferentUser(user);
-			}
-				
+	public String checkLogin(){
+		
+		user.setLastLogin(new Date());
+		
+		LoginService loginService = new LoginService();
+		loginService.login(user);
+		
+
+		return "index?faces-redirect=true";
 	}
-	
-	
-	
-	
-	
 
 }

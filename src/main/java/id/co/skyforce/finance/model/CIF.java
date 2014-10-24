@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 public class CIF {
 
 	@Id
+	@GeneratedValue
 	@Column(name = "cif_no", length = 8, nullable = false)
 	private String cifNo;
 

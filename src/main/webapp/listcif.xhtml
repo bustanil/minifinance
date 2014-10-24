@@ -4,6 +4,59 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
+<<<<<<< HEAD
+<ui:composition template="/template/bootstrap.xhtml">
+
+	<ui:define name="content">
+		<center>
+			<h:form>
+				<h:messages />
+
+				<h:dataTable var="l" value="#{cIFListController.cifList}">
+					<h:column>
+						<f:facet name="header">No. CIF</f:facet>
+						<h:outputText value="#{l.cifNo}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Password</f:facet>
+						<h:outputText value="#{l.password}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Email</f:facet>
+						<h:outputText value="#{l.email}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nama Depan</f:facet>
+						<h:outputText value="#{l.firstName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nama Belakang</f:facet>
+						<h:outputText value="#{l.lastName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Tanggal Lahir</f:facet>
+						<h:outputText value="#{l.birthDate}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nama Orang Tua</f:facet>
+						<h:outputText value="#{l.motherMaidenName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nomor ID</f:facet>
+						<h:outputText value="#{l.idNumber}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Tipe ID</f:facet>
+						<h:outputText value="#{l.idType}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</center>
+
+	</ui:define>
+
+</ui:composition>
+=======
 <h:head></h:head>
 <body>
 
@@ -48,4 +101,5 @@
 	<br />
 
 </body>
+>>>>>>> branch 'master' of https://github.com/bustanil/minifinance.git
 </html>

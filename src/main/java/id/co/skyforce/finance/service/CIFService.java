@@ -11,27 +11,33 @@ import id.co.skyforce.finance.model.CIF;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 public class CIFService {
-	
-	public void addUpdateCif(CIF cif) {
+
+	private List<CIF> cifs;
+
+	public List<CIF> getCifs() {
+		return cifs;
+	}
+
+	public void setCifs(List<CIF> cifs) {
+		this.cifs = cifs;
+	}
+
+	public void listCif() {
+
+		Session session = HibernateUtil.openSession();
+		Transaction transaction = session.beginTransaction();
+
+		cifs = session.createQuery("from CIF").list();
+		
+	}
+
+	public String addUpdateCif(CIF cif) {
+
 		Transaction transaction = null;
 		Session session = HibernateUtil.openSession();
 		try {
 			transaction = session.beginTransaction();
 			session.saveOrUpdate(cif);
-			transaction.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			transaction.rollback();
-		}
-		session.close();
-	}
-
-	public String addCif(CIF cif) {
-		Transaction transaction = null;
-		Session session = HibernateUtil.openSession();
-		try {
-			transaction = session.beginTransaction();
-			session.save(cif);
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,26 +91,26 @@ public class CIFService {
 		return cifs;
 	}
 
-	public List<CIF> searchByNameBirthDayMother(String search) {
-		Transaction transaction = null;
-		Session session = HibernateUtil.openSession();
-		try {
-			transaction = session.beginTransaction();
-			Query query = session
-					.createQuery("FROM CIF where firstName LIKE :fn OR lastName LIKE :ln OR birthDate LIKE :bd OR motherMaidenName LIKE :md");
-			query.setString("fn", "%" + search + "%");
-			query.setString("ln", "%" + search + "%");
-			query.setString("bd", "%" + search + "%");
-			query.setString("md", "%" + search + "%");
-			List<CIF> listCifs = query.list();
-			if (listCifs.size() > 0) {
-				return listCifs;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			transaction.rollback();
-		}
-		session.close();
-		return null;
-	}
+	// public List<CIF> searchByNameBirthDayMother(String search) {
+	// Transaction transaction = null;
+	// Session session = HibernateUtil.openSession();
+	// try {
+	// transaction = session.beginTransaction();
+	// Query query = session
+	// .createQuery("FROM CIF where firstName LIKE :fn OR lastName LIKE :ln OR birthDate LIKE :bd OR motherMaidenName LIKE :md");
+	// query.setString("fn", "%" + search + "%");
+	// query.setString("ln", "%" + search + "%");
+	// query.setString("bd", "%" + search + "%");
+	// query.setString("md", "%" + search + "%");
+	// List<CIF> listCifs = query.list();
+	// if (listCifs.size() > 0) {
+	// return listCifs;
+	// }
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// transaction.rollback();
+	// }
+	// session.close();
+	// return null;
+	// }
 }
