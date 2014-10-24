@@ -39,10 +39,11 @@ public class LoanAccountScheduleService {
 
 		BigDecimal principal = loanAccount.getPlafond().divide(
 				new BigDecimal(loanAccount.getTenure()));
-		BigDecimal periodInterestRate = loanAccount.getInterestRate()
-				.divide(new BigDecimal(100))
-				.divide(new BigDecimal(loanAccount.getTenure()));
-		BigDecimal periodInterest = principal.multiply(periodInterestRate);
+		BigDecimal interestRate = loanAccount.getInterestRate().divide(
+				new BigDecimal(100));
+		BigDecimal interest = loanAccount.getPlafond().multiply(interestRate);
+		BigDecimal periodInterest = interest.divide(new BigDecimal(loanAccount
+				.getTenure()));
 		BigDecimal installment = principal.add(periodInterest);
 
 		calendar.setTime(loanAccount.getStartDate());
