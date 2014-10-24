@@ -17,6 +17,12 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">Mini Finance Application</a>
+				<!-- 				<h:panelGrid columns="2"> -->
+				<!-- 					<h:link value="Create CIF" outcome="/cif"></h:link> -->
+				<!-- 					<h:link value="Loan Account" outcome="/loanaccount"></h:link> -->
+				<!-- 					<h:outputLabel value="" /> -->
+				<!-- 					<h:outputLabel value="" /> -->
+				<!-- 				</h:panelGrid> -->
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
@@ -30,18 +36,18 @@
 										class="glyphicon glyphicon-list-alt"
 										style="padding-right: 5px"></span>Transaction History</a></li>
 								<li class="divider"></li>
-								<li>
-									<h:form style="margin-left: 20px">
-									<h:commandLink action="#{customerLogoutBean.logout}">
-										<span class="glyphicon glyphicon-log-out"
-											style="padding-right: 5px"> </span>Logout
+								<li><h:form style="margin-left: 20px">
+										<h:commandLink action="#{customerLogoutBean.logout}">
+											<span class="glyphicon glyphicon-log-out"
+												style="padding-right: 5px"> </span>Logout
 									</h:commandLink>
-									</h:form>
-								</li>
-							</ul>
-						</li>
+									</h:form></li>
+							</ul></li>
 					</h:panelGroup>
-					<li><h:link value="login" rendered="#{not customerLogin.loggedIn}" outcome="login"/></li>
+					<li><h:link value="login"
+							rendered="#{not customerLogin.loggedIn}" outcome="login" /></li>
+					<li><h:link value="Create Cif" outcome="/cif" /></li>
+					<li><h:link value="Loan Account" outcome="/loanaccount"/></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

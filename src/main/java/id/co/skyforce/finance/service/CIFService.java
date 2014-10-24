@@ -32,6 +32,7 @@ public class CIFService {
 	}
 
 	public String addUpdateCif(CIF cif) {
+
 		Transaction transaction = null;
 		Session session = HibernateUtil.openSession();
 		try {

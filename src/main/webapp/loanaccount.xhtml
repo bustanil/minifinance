@@ -14,10 +14,10 @@
 
 				<h:panelGrid columns="2" border="0">
 CIF
-<h:selectOneListbox value="#{loanAccount.cif}">
+<h:selectOneMenu value="#{loanAccount.cif}">
 						<f:selectItem itemValue="#{loanAccount.cif}"
 							itemLabel="#{loanAccount.cif}" />
-					</h:selectOneListbox>
+					</h:selectOneMenu>
 		Account No.
 		<h:inputText value="#{loanAccount.accountNo}" />
 		Plafond
@@ -27,13 +27,13 @@ CIF
 		Interest rate
 		<h:inputText value="#{loanAccount.interestRate}" />
 		Interest type
-		<h:selectOneListbox value="#{loanAccount.interestType}">
+		<h:selectOneMenu value="#{loanAccount.interestType}">
 						<f:selectItem itemValue="#{loanAccount.flat}" itemLabel="Flat" />
 						<f:selectItem itemValue="#{loanAccount.efektif}"
 							itemLabel="Efektif" />
 						<f:selectItem itemValue="#{loanAccount.anuitas}"
 							itemLabel="Anuitas" />
-					</h:selectOneListbox>
+					</h:selectOneMenu>
 				</h:panelGrid>
 
 				<h:commandButton action="#{simulate}" value="Simulate" />
