@@ -12,25 +12,6 @@ import id.co.skyforce.finance.util.HibernateUtil;
 
 public class CIFService {
 
-	private List<CIF> cifs;
-
-	public List<CIF> getCifs() {
-		return cifs;
-	}
-
-	public void setCifs(List<CIF> cifs) {
-		this.cifs = cifs;
-	}
-
-	public void listCif() {
-
-		Session session = HibernateUtil.openSession();
-		Transaction transaction = session.beginTransaction();
-
-		cifs = session.createQuery("from CIF").list();
-		
-	}
-
 	public String addUpdateCif(CIF cif) {
 
 		Transaction transaction = null;
