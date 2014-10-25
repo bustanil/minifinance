@@ -15,7 +15,6 @@ import javax.persistence.Table;
 public class CIF {
 
 	@Id
-	@GeneratedValue
 	@Column(name = "cif_no", length = 8, nullable = false)
 	private String cifNo;
 

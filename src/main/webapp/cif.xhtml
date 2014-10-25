@@ -14,34 +14,36 @@
 
 				<h:panelGrid columns="2" border="0">
 					<center>No.CIF</center>
-					<h:inputText value="#{cIFController.cifNo}" />
+					<h:inputText value="#{cIFController.cifNo}" required="true" label="No Cif"/>
 					<br />
 					<center>Password</center>
-					<h:inputText value="#{cIFController.password}" />
+					<h:inputText value="#{cIFController.password}" required="true"  label="Password"/>
 					<br />
 					<center>Email</center>
-					<h:inputText value="#{cIFController.email}" />
+					<h:inputText value="#{cIFController.email}" required="true"  label="Email"/>
 					<br />
 					<center>Nama Depan</center>
-					<h:inputText value="#{cIFController.firstName}" />
+					<h:inputText value="#{cIFController.firstName}" required="true"  label="Nama Depan"/>
 					<br />
 					<center>Nama Belakang</center>
-					<h:inputText value="#{cIFController.lastName}" />
+					<h:inputText value="#{cIFController.lastName}" required="true"  label="Nama Belakang"/>
 					<br />
 					<center>Tanggal Lahir</center>
-					<h:inputText value="#{cIFController.birthDate}">
+					<h:inputText value="#{cIFController.birthDate}" required="true"  label="Tanggal Lahir">
 						<f:convertDateTime pattern="yyyy/MM/dd" />
 					</h:inputText>
 					<br />
 					<center>Nama Orang Tua</center>
-					<h:inputText value="#{cIFController.motherMaidenName}" />
+					<h:inputText value="#{cIFController.motherMaidenName}" required="true"  label="Nama Orang Tua"/>
 					<br />
 					<center>Nomor ID</center>
-					<h:inputText value="#{cIFController.idNumber}" />
+					<h:inputText value="#{cIFController.idNumber}" required="true" label="Nomor Id"/>
 					<br />
 					<center>Tipe ID</center>
-					<h:inputText value="#{cIFController.idType}" />
-					<br />
+					<h:selectOneMenu value="#{cIFController.idType}">
+						<f:selectItem itemValue="K" itemLabel="KTP" />
+						<f:selectItem itemValue="S" itemLabel="SIM" />
+					</h:selectOneMenu>
 				</h:panelGrid>
 
 
