@@ -13,14 +13,11 @@
 				<h:messages />
 
 				<h:panelGrid columns="2" border="0">
-					<center>Tanggal Transaksi</center>
-					<h:inputText value="#{paymentController.transactionDate}" required="true" label="Tanggal Transaksi"/>
+					<center>No. Akun</center>
+					<h:inputText value="#{paymentController.acountNo}" required="true"  label="No. akun"/>
 					<br />
 					<center>Jumlah</center>
 					<h:inputText value="#{paymentController.amount}" required="true"  label="Jumlah"/>
-					<br />
-					<center>No. Akun</center>
-					<h:inputText value="#{paymentController.acountNo}" required="true"  label="No. akun"/>
 					<br />
 					<center>Status Pembayaran</center>
 					<h:inputText value="#{paymentController.paymentStatus}" required="true"  label="Status Pembayaran"/>
