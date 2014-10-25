@@ -17,18 +17,11 @@ public class CIFListController {
 	private List<CIF> cifList;
 
 	public CIFListController() {
-		String cifNo = FacesContext.getCurrentInstance().getExternalContext()
-				.getRequestParameterMap().get("cif_no");
+		Session session = HibernateUtil.openSession();
+		Transaction trx = session.beginTransaction();
 
-		if (cifNo != null) {
-			Session session = HibernateUtil.openSession();
-			Transaction trx = session.beginTransaction();
+		cifList = session.createQuery("from CIF").list();
 
-			cifList = session.createQuery("from CIF").list();
-
-			trx.commit();
-			session.close();
-		}
 	}
 
 	public List<CIF> getCifList() {
