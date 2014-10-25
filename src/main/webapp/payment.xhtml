@@ -14,7 +14,10 @@
 
 				<h:panelGrid columns="2" border="0">
 					<center>No. Akun</center>
-					<h:inputText value="#{paymentController.acountNo}" required="true"  label="No. akun"/>
+					<h:selectOneMenu value="#{paymentController.acountNo}">
+						<f:selectItem itemValue="#{paymentController.acountNo}" itemLabel="#{paymentController.acountNo}" />
+					</h:selectOneMenu>
+<!-- 					<h:inputText value="#{paymentController.acountNo}" required="true"  label="No. akun"/> -->
 					<br />
 					<center>Jumlah</center>
 					<h:inputText value="#{paymentController.amount}" required="true"  label="Jumlah"/>
