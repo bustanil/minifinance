@@ -14,20 +14,20 @@
 
 				<h:panelGrid columns="2" border="0">
 					<center>Tanggal Transaksi</center>
-					<h:inputText value="#{cIFController.cifNo}" required="true" label="Tanggal Transaksi"/>
+					<h:inputText value="#{paymentController.transactionDate}" required="true" label="Tanggal Transaksi"/>
 					<br />
 					<center>Jumlah</center>
-					<h:inputText value="#{cIFController.password}" required="true"  label="Jumlah"/>
+					<h:inputText value="#{paymentController.amount}" required="true"  label="Jumlah"/>
 					<br />
 					<center>No. Akun</center>
-					<h:inputText value="#{cIFController.email}" required="true"  label="No. akun"/>
+					<h:inputText value="#{paymentController.acountNo}" required="true"  label="No. akun"/>
 					<br />
 					<center>Status Pembayaran</center>
-					<h:inputText value="#{cIFController.firstName}" required="true"  label="Status Pembayaran"/>
+					<h:inputText value="#{paymentController.paymentStatus}" required="true"  label="Status Pembayaran"/>
 					<br />
 				</h:panelGrid>
 
-				<h:commandButton action="#{cIFController.save}" value="Submit" />
+				<h:commandButton action="#{paymentController.save}" value="Submit" />
 
 			</h:form>
 		</center>
