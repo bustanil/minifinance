@@ -47,6 +47,10 @@ public class LoanAccount {
 	@OneToMany(mappedBy = "loanAccount", cascade = CascadeType.ALL)
 //	@JoinColumn(name = "account_no")
 	private List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<>();
+	
+	//
+	@OneToMany(cascade = CascadeType.ALL)
+	private Payment payment;
 
 	public String getAccountNo() {
 		return accountNo;
