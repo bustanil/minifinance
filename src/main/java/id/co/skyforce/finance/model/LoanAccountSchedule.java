@@ -47,6 +47,8 @@ public class LoanAccountSchedule implements Serializable {
 	@Column(name = "paid_status", nullable = true)
 	private Character paidStatus;
 
+	private BigDecimal installmentBalance;
+
 	public LoanAccount getLoanAccount() {
 		return loanAccount;
 	}
@@ -109,5 +111,13 @@ public class LoanAccountSchedule implements Serializable {
 
 	public void setPaidStatus(Character paidStatus) {
 		this.paidStatus = paidStatus;
+	}
+
+	public BigDecimal getInstallmentBalance() {
+		return installmentBalance;
+	}
+
+	public void setInstallmentBalance(BigDecimal installmentBalance) {
+		this.installmentBalance = installmentBalance;
 	}
 }
