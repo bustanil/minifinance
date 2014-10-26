@@ -10,12 +10,16 @@ import javax.faces.bean.SessionScoped;
 public class SessionController {
 	private User currentUser;
 
-	public User getUser() {
+	public User getCurrentUser() {
 		return currentUser;
 	}
 
-	public void setUser(User user) {
-		this.currentUser = user;
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
+
+	public void unsetCurrentUser() {
+		this.currentUser = null;
 	}
 
 	public boolean isLoggedIn() {
