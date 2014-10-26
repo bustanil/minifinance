@@ -25,7 +25,7 @@ public class LoanAccountScheduleService {
 					.generateScheduleWithEffectiveRate(loanAccount);
 		} else if (loanAccount.getInterestType() == 'A') {
 			LoanAccountScheduleService
-					.generateScheduleWithAnnuityeRate(loanAccount);
+					.generateScheduleWithAnnuityRate(loanAccount);
 		} else {
 			throw new Exception(
 					"Jenis bunga tidak diketahui. Jenis bunga: 'F'/'E'/'A'");
@@ -117,7 +117,7 @@ public class LoanAccountScheduleService {
 	}
 
 	// TODO test
-	private static void generateScheduleWithAnnuityeRate(LoanAccount loanAccount) {
+	private static void generateScheduleWithAnnuityRate(LoanAccount loanAccount) {
 		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
 		Calendar calendar = Calendar.getInstance();
 
