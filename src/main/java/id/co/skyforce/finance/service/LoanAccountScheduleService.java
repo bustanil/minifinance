@@ -40,8 +40,8 @@ public class LoanAccountScheduleService {
 		BigDecimal installmentBalance = loanAccount.getPlafond();
 		BigDecimal principal = loanAccount.getPlafond().divide(
 				new BigDecimal(loanAccount.getTenure()));
-		BigDecimal interestRate = loanAccount.getInterestRate().divide(
-				new BigDecimal(100));
+		BigDecimal interestRate = LoanAccountScheduleService
+				.calculateInterestRate(loanAccount);
 		BigDecimal interest = loanAccount.getPlafond().multiply(interestRate);
 		BigDecimal periodInterest = interest.divide(new BigDecimal(loanAccount
 				.getTenure()));
@@ -82,9 +82,10 @@ public class LoanAccountScheduleService {
 		BigDecimal installmentBalance = loanAccount.getPlafond();
 		BigDecimal principal = loanAccount.getPlafond().divide(
 				new BigDecimal(loanAccount.getTenure()));
-		BigDecimal periodInterestRate = loanAccount.getInterestRate()
-				.divide(new BigDecimal(100))
-				.divide(new BigDecimal(loanAccount.getTenure()));
+		BigDecimal interestRate = LoanAccountScheduleService
+				.calculateInterestRate(loanAccount);
+		BigDecimal periodInterestRate = interestRate.divide(new BigDecimal(
+				loanAccount.getTenure()));
 
 		calendar.setTime(loanAccount.getStartDate());
 
@@ -155,60 +156,62 @@ public class LoanAccountScheduleService {
 		loanAccount.setLoanAccountSchedules(loanAccountSchedules);
 	}
 
+	private static BigDecimal calculateInterestRate(LoanAccount loanAccount) {
+		BigDecimal yearlyInterestRate = loanAccount.getInterestRate().divide(
+				new BigDecimal(100));
+		BigDecimal interestRate = yearlyInterestRate.multiply(
+				new BigDecimal(loanAccount.getTenure())).divide(
+				new BigDecimal(12));
+
+		return interestRate;
+	}
+
 	private static BigDecimal calculateAnnuityInstallment(
 			LoanAccount loanAccount) {
-		int precision = 15;
-		RoundingMode roundingMode = RoundingMode.HALF_UP;
+		BigDecimal oneHundred = new BigDecimal(100);
+		BigDecimal twelve = new BigDecimal(12);
+		BigDecimal plafond = loanAccount.getPlafond();
+		BigDecimal tenure = new BigDecimal(loanAccount.getTenure());
+		BigDecimal yearlyInterestRate = loanAccount.getInterestRate().divide(
+				oneHundred);
+
 		/**
 		 * http://jnet99.wordpress.com/2008/12/26/perhitungan-suku-bunga-kredit-
 		 * anuitas/
 		 */
-		BigDecimal installment = loanAccount
-				.getPlafond()
-				.multiply(
-						loanAccount
-								.getInterestRate()
-								.divide(new BigDecimal(loanAccount.getTenure()),
-										precision, roundingMode)
-								.multiply(
-										BigDecimal.ONE.divide(
-												BigDecimal.ONE
-														.subtract(BigDecimal.ONE
-																.divide(BigDecimal.ONE
-																		.add(loanAccount
-																				.getInterestRate()
-																				.divide(new BigDecimal(
-																						100),
-																						precision,
-																						roundingMode)
-																				.divide(new BigDecimal(
-																						loanAccount
-																								.getTenure()),
-																						precision,
-																						roundingMode))
-																		.pow(loanAccount
-																				.getTenure()),
-																		precision,
-																		roundingMode)),
-												precision, roundingMode)));
+		BigDecimal installment = plafond.multiply(
+				yearlyInterestRate.divide(twelve)).multiply(
+				LoanAccountScheduleService.somewhatComplicatedFormula(
+						yearlyInterestRate, tenure));
 
 		return installment;
 	}
 
+	private static BigDecimal somewhatComplicatedFormula(
+			BigDecimal yearlyInterestRate, BigDecimal tenure) {
+		BigDecimal one = BigDecimal.ONE;
+		BigDecimal twelve = new BigDecimal(12);
+		int precision = 10;
+		RoundingMode roundingMode = RoundingMode.UP;
+
+		return one.divide(
+				one.subtract(one.divide(
+						one.add(yearlyInterestRate.divide(twelve)).pow(
+								tenure.intValue()), precision, roundingMode)),
+				precision, roundingMode);
+	}
+
 	private static BigDecimal calculateAnnuityPeriodInterest(
 			BigDecimal lastBalance, LoanAccount loanAccount) {
-		int precision = 15;
-		RoundingMode roundingMode = RoundingMode.HALF_UP;
+		BigDecimal interestRate = LoanAccountScheduleService
+				.calculateInterestRate(loanAccount);
+
 		/**
 		 * http://jnet99.wordpress.com/2008/12/26/perhitungan-suku-bunga-kredit-
 		 * anuitas/
 		 */
-		BigDecimal periodInterest = lastBalance.multiply(loanAccount
-				.getInterestRate().divide(
-						new BigDecimal(100).divide(
-								new BigDecimal(loanAccount.getTenure()),
-								precision, roundingMode), precision,
-						roundingMode));
+		BigDecimal periodInterest = lastBalance.multiply(interestRate
+				.divide(new BigDecimal(loanAccount.getTenure())));
 
 		return periodInterest;
 	}
