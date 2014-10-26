@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "loan_account_schedule")
@@ -47,6 +48,7 @@ public class LoanAccountSchedule implements Serializable {
 	@Column(name = "paid_status", nullable = true)
 	private Character paidStatus;
 
+	@Transient
 	private BigDecimal installmentBalance;
 
 	public LoanAccount getLoanAccount() {
