@@ -1,5 +1,7 @@
 package id.co.skyforce.finance.controller;
 
+import java.io.Serializable;
+
 import id.co.skyforce.finance.model.User;
 
 import javax.faces.bean.ManagedBean;
@@ -7,7 +9,8 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class SessionController {
+public class SessionController implements Serializable {
+	private static final long serialVersionUID = -8774712981213743020L;
 	private User currentUser;
 
 	public User getCurrentUser() {
