@@ -66,17 +66,9 @@ public class CIFController {
 		service.addUpdateCif(cif);
 	}
 
-	public String delete() {
-		/*
-		 * Session session = HibernateUtil.openSession(); Transaction trx =
-		 * session.beginTransaction();
-		 */
-		// CIF cif = (CIF) session.get(CIF.class, cifNo);
+	public void delete() {
+		service = new CIFService();
 		service.deleteCif(cifNo);
-		/*
-		 * session.delete(cif); trx.commit(); session.close();
-		 */
-		return "";
 	}
 
 	public String getCifNo() {

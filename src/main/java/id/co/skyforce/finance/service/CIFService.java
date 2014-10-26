@@ -12,7 +12,7 @@ import id.co.skyforce.finance.util.HibernateUtil;
 
 public class CIFService {
 
-	public String addUpdateCif(CIF cif) {
+	public void addUpdateCif(CIF cif) {
 
 		Transaction transaction = null;
 		Session session = HibernateUtil.openSession();
@@ -25,7 +25,6 @@ public class CIFService {
 			transaction.rollback();
 		}
 		session.close();
-		return "/shop/listcif";
 	}
 
 	public void deleteCif(String cifId) {
