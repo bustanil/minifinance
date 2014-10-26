@@ -13,12 +13,20 @@ import java.util.List;
 public class LoanAccountScheduleService {
 	public static void generateSchedule(LoanAccount loanAccount)
 			throws Exception {
+		if (loanAccount.getPlafond().compareTo(BigDecimal.ZERO) != 1) {
+			throw new Exception("Plafond harus lebih besar dari 0.");
+		}
+
 		if (loanAccount.getTenure() <= 0) {
 			throw new Exception("Tenure <= 0. Seharusnya > 0.");
 		}
 
+		if (loanAccount.getInterestRate().compareTo(BigDecimal.ZERO) == -1) {
+			throw new Exception("Interest rate tidak boleh kurang dari 0.");
+		}
+
 		if (loanAccount.getStartDate() == null) {
-			throw new Exception("startDate tidak boleh null.");
+			throw new Exception("Start date tidak boleh null.");
 		}
 
 		if (loanAccount.getInterestType() == 'F') {
