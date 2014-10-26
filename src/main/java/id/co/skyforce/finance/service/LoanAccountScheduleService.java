@@ -17,6 +17,10 @@ public class LoanAccountScheduleService {
 			throw new Exception("Tenure <= 0. Seharusnya > 0.");
 		}
 
+		if (loanAccount.getStartDate() == null) {
+			throw new Exception("startDate tidak boleh null.");
+		}
+
 		if (loanAccount.getInterestType() == 'F') {
 			LoanAccountScheduleService
 					.generateScheduleWithFlatRate(loanAccount);
