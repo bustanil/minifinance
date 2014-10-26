@@ -26,6 +26,14 @@ public class CIFController {
 	private Character idType;
 	private static CIFService service;
 
+	public static CIFService getService() {
+		return service;
+	}
+
+	public static void setService(CIFService service) {
+		CIFController.service = service;
+	}
+
 	public CIFController() {
 		String cifNo = FacesContext.getCurrentInstance().getExternalContext()
 				.getRequestParameterMap().get("cif_no");
@@ -69,6 +77,23 @@ public class CIFController {
 	public void delete() {
 		service = new CIFService();
 		service.deleteCif(cifNo);
+	}
+
+	public void edit() {
+		String cifIf = null;
+		service = new CIFService();
+		CIF cif = new CIF();
+		if (cifIf == cif.getCifNo()) {
+			cif.setPassword(password);
+			cif.setEmail(email);
+			cif.setFirstName(firstName);
+			cif.setLastName(lastName);
+			cif.setBirthDate(birthDate);
+			cif.setMotherMaidenName(motherMaidenName);
+			cif.setIdNumber(idNumber);
+			cif.setIdType(idType);
+			service.updateCif(cif);
+		}
 	}
 
 	public String getCifNo() {

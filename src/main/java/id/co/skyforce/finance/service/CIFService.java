@@ -56,20 +56,20 @@ public class CIFService {
 		session.close();
 	}
 
-	public List<CIF> getAllCif() {
-		List<CIF> cifs = new ArrayList<CIF>();
-		Transaction transaction = null;
-		Session session = HibernateUtil.openSession();
-		try {
-			transaction = session.beginTransaction();
-			cifs = session.createQuery("FROM CIF").list();
-		} catch (Exception e) {
-			e.printStackTrace();
-			transaction.rollback();
-		}
-		session.close();
-		return cifs;
-	}
+	// public List<CIF> getAllCif() {
+	// List<CIF> cifs = new ArrayList<CIF>();
+	// Transaction transaction = null;
+	// Session session = HibernateUtil.openSession();
+	// try {
+	// transaction = session.beginTransaction();
+	// cifs = session.createQuery("FROM CIF").list();
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// transaction.rollback();
+	// }
+	// session.close();
+	// return cifs;
+	// }
 
 	// public List<CIF> searchByNameBirthDayMother(String search) {
 	// Transaction transaction = null;
