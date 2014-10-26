@@ -38,10 +38,10 @@ public class Payment {
 	private Character paymentStatus;
 	
 	//
-	@ManyToOne(fetch = FetchType.LAZY)
+/*	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "account_no")
 	private LoanAccount loanAccount;
-
+*/
 	public Integer getId() {
 		return id;
 	}

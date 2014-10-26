@@ -33,7 +33,7 @@ public class LoanAccountScheduleService {
 	}
 
 	// TODO Test
-	private static void generateScheduleWithFlatRate(LoanAccount loanAccount) {
+	public static void generateScheduleWithFlatRate(LoanAccount loanAccount) {
 		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
 		Calendar calendar = Calendar.getInstance();
 
@@ -74,7 +74,7 @@ public class LoanAccountScheduleService {
 	}
 
 	// TODO Test
-	private static void generateScheduleWithEffectiveRate(
+	public static void generateScheduleWithEffectiveRate(
 			LoanAccount loanAccount) {
 		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
 		Calendar calendar = Calendar.getInstance();
@@ -117,7 +117,7 @@ public class LoanAccountScheduleService {
 	}
 
 	// TODO test
-	private static void generateScheduleWithAnnuityRate(LoanAccount loanAccount) {
+	public static void generateScheduleWithAnnuityRate(LoanAccount loanAccount) {
 		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
 		Calendar calendar = Calendar.getInstance();
 

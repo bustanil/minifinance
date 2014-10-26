@@ -49,9 +49,9 @@ public class LoanAccount {
 	private List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<>();
 	
 	//
-	@OneToMany(cascade = CascadeType.ALL)
+/*	@OneToMany(cascade = CascadeType.ALL)
 	private Payment payment;
-
+*/
 	public String getAccountNo() {
 		return accountNo;
 	}

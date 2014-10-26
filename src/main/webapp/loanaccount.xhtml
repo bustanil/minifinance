@@ -14,56 +14,55 @@
 
 				<h:panelGrid columns="2" border="0">
 CIF
-<h:selectOneMenu value="#{loanAccount.cif}">
-						<f:selectItem itemValue="#{loanAccount.cif}"
-							itemLabel="#{loanAccount.cif}" />
+<h:selectOneMenu value="#{loanAccountController.cifNo}">
+						<f:selectItems value="#{cIFListController.cifList}" var="cifList"
+							itemValue="#{cifList.cifNo}" itemLabel="#{cifList.cifNo}">
+						</f:selectItems>
 					</h:selectOneMenu>
 		Account No.
-		<h:inputText value="#{loanAccount.accountNo}" />
+		<h:inputText value="#{loanAccountController.accountNo}" />
 		Plafond
-		<h:inputText value="#{loanAccount.plafond}" />
+		<h:inputText value="#{loanAccountController.plafond}" />
 		Tenure
-		<h:inputText value="#{loanAccount.tenure}" />
+		<h:inputText value="#{loanAccountController.tenure}" />
 		Interest rate
-		<h:inputText value="#{loanAccount.interestRate}" />
+		<h:inputText value="#{loanAccountController.interestRate}" />
 		Interest type
-		<h:selectOneMenu value="#{loanAccount.interestType}">
-						<f:selectItem itemValue="#{loanAccount.flat}" itemLabel="Flat" />
-						<f:selectItem itemValue="#{loanAccount.efektif}"
-							itemLabel="Efektif" />
-						<f:selectItem itemValue="#{loanAccount.anuitas}"
-							itemLabel="Anuitas" />
+		<h:selectOneMenu value="#{loanAccountController.interestType}">
+						<f:selectItem itemValue="F" itemLabel="Flat" />
+						<f:selectItem itemValue="E" itemLabel="Efektif" />
+						<f:selectItem itemValue="A" itemLabel="Anuitas" />
 					</h:selectOneMenu>
 				</h:panelGrid>
 
-				<h:commandButton action="#{simulate}" value="Simulate" />
+				<h:commandButton action="#{loanAccountController.simulate}" value="Simulate" />
 				<br />
 				<br />
 
 				<h:dataTable>
 					<h:column>
 						<f:facet name="header">Period</f:facet>
-						<h:outputText value="#{loanAccountSchedule.period}" />
+						<h:outputText value="#{loanAccountScheduleController.period}" />
 					</h:column>
-					<h:column>
-						<f:facet name="header">Due Date</f:facet>
-						<h:outputText value="#{loanAccountSchedule.dueDate}" />
-					</h:column>
+<!-- 					<h:column> -->
+<!-- 						<f:facet name="header">Due Date</f:facet> -->
+<!-- 						<h:outputText value="#{loanAccountScheduleController.dueDate}" /> -->
+<!-- 					</h:column> -->
 					<h:column>
 						<f:facet name="header">Interest</f:facet>
-						<h:outputText value="#{loanAccountSchedule.interest}" />
+						<h:outputText value="#{loanAccountScheduleController.interest}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Principal</f:facet>
-						<h:outputText value="#{loanAccountSchedule.principal}" />
+						<h:outputText value="#{loanAccountScheduleController.principal}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Installment</f:facet>
-						<h:outputText value="#{loanAccountSchedule.installment}" />
+						<h:outputText value="#{loanAccountScheduleController.installment}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Outstanding</f:facet>
-						<h:outputText value="#{loanAccountSchedule.outstanding}" />
+						<h:outputText value="#{loanAccountScheduleController.period}" />
 					</h:column>
 				</h:dataTable>
 				<br />
