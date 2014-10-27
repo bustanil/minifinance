@@ -1,12 +1,15 @@
 package id.co.skyforce.finance.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -42,8 +45,16 @@ public class CIF {
 	@Column(name = "id_type", length = 50, nullable = false)
 	private Character idType;
 
-	@OneToOne(mappedBy = "cif", cascade = CascadeType.ALL)
-	private LoanAccount loanAccount;
+	@OneToMany(mappedBy = "cif", cascade = CascadeType.ALL)
+	private List<LoanAccount> loanAccounts = new ArrayList<>();
+
+	public List<LoanAccount> getLoanAccounts() {
+		return loanAccounts;
+	}
+
+	public void setLoanAccounts(List<LoanAccount> loanAccounts) {
+		this.loanAccounts = loanAccounts;
+	}
 
 	public String getCifNo() {
 		return cifNo;

@@ -10,8 +10,10 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -40,9 +42,16 @@ public class LoanAccount {
 	@Column(name = "start_date", nullable = false)
 	private Date startDate;
 
-	@OneToOne
-	@PrimaryKeyJoinColumn
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cif_no")
+	//@PrimaryKeyJoinColumn
 	private CIF cif;
+	
+	
+	
+	
+	
+	
 
 	@OneToMany(mappedBy = "loanAccount", cascade = CascadeType.ALL)
 //	@JoinColumn(name = "account_no")

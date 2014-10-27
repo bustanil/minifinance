@@ -3,11 +3,14 @@ package id.co.skyforce.finance.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.context.FacesContext;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import id.co.skyforce.finance.model.CIF;
+import id.co.skyforce.finance.model.User;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 public class CIFService {
@@ -55,6 +58,22 @@ public class CIFService {
 		}
 		session.close();
 	}
+	
+	public CIF getCif(String cifNo){
+		Transaction transaction = null;
+		Session session = HibernateUtil.openSession();
+		CIF cif=null;
+		
+		try{
+			transaction = session.beginTransaction();
+			cif = (CIF) session.get(CIF.class, cifNo);
+		} catch (Exception e){
+			e.printStackTrace();
+			transaction.rollback();
+		}
+		return cif;
+	}
+	
 
 	// public List<CIF> getAllCif() {
 	// List<CIF> cifs = new ArrayList<CIF>();
