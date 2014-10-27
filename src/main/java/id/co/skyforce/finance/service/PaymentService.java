@@ -9,6 +9,7 @@ import id.co.skyforce.finance.model.LoanAccountSchedule;
 import id.co.skyforce.finance.model.Payment;
 import id.co.skyforce.finance.util.HibernateUtil;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -87,19 +88,30 @@ public class PaymentService {
 			throw new Exception("Amount harus lebih besar dari nol.");
 		}
 
+		Transaction transaction = null;
+		Session session = HibernateUtil.openSession();
+
+		transaction = session.beginTransaction();
+
 		LoanAccountService loanAccountService = new LoanAccountService();
 		LoanAccount loanAccount = loanAccountService.getLoanAccount(payment
 				.getAcountNo());
 
 		if (loanAccount == null) {
+			transaction.rollback();
+			session.close();
 			throw new Exception("Loan account " + payment.getAcountNo()
 					+ "tidak ditemukan.");
 		}
 
+		session.refresh(loanAccount);
+		Hibernate.initialize(loanAccount.getLoanAccountSchedules());
+		List<LoanAccountSchedule> loanAccountSchedules = loanAccount
+				.getLoanAccountSchedules();
+
 		LoanAccountSchedule loanAccountSchedule = null;
 
-		for (LoanAccountSchedule schedule : loanAccount
-				.getLoanAccountSchedules()) {
+		for (LoanAccountSchedule schedule : loanAccountSchedules) {
 			if (schedule.getPaidStatus().equals('U')) {
 				loanAccountSchedule = schedule;
 				break;
@@ -107,32 +119,26 @@ public class PaymentService {
 		}
 
 		if (loanAccountSchedule == null) {
+			transaction.rollback();
+			session.close();
 			throw new Exception("Tidak ada angsuran yang belum dibayar.");
 		}
 
 		if (loanAccountSchedule.getOutstanding().compareTo(payment.getAmount()) != 0) {
-			throw new Exception("Cicilan tidak sesua dengan jumlah pembayaran.");
-		}
-
-		Transaction transaction = null;
-		Session session = HibernateUtil.openSession();
-
-		try {
-			transaction = session.beginTransaction();
-
-			loanAccountSchedule.setOutstanding(BigDecimal.ZERO);
-			loanAccountSchedule.setPaidStatus('P');
-			payment.setPaymentStatus('P');
-
-			session.update(loanAccountSchedule);
-			session.update(payment);
-
-			transaction.commit();
-		} catch (Exception e) {
 			transaction.rollback();
-			throw e;
+			session.close();
+			throw new Exception(
+					"Cicilan tidak sesuai dengan jumlah pembayaran.");
 		}
 
+		loanAccountSchedule.setOutstanding(BigDecimal.ZERO);
+		loanAccountSchedule.setPaidStatus('P');
+		payment.setPaymentStatus('P');
+
+		session.update(loanAccountSchedule);
+		session.update(payment);
+
+		transaction.commit();
 		session.close();
 	}
 }
