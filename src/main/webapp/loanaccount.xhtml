@@ -39,10 +39,10 @@ CIF
 				<br />
 				<br />
 
-				<h:dataTable>
+				<h:dataTable var="las" value="#{loanAccountController.loanAccounts}">
 					<h:column>
 						<f:facet name="header">Period</f:facet>
-						<h:outputText value="#{loanAccountScheduleController.period}" />
+						<h:outputText value="#{las.period}" />
 					</h:column>
 <!-- 					<h:column> -->
 <!-- 						<f:facet name="header">Due Date</f:facet> -->
@@ -50,19 +50,19 @@ CIF
 <!-- 					</h:column> -->
 					<h:column>
 						<f:facet name="header">Interest</f:facet>
-						<h:outputText value="#{loanAccountScheduleController.interest}" />
+						<h:outputText value="#{las.interest}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Principal</f:facet>
-						<h:outputText value="#{loanAccountScheduleController.principal}" />
+						<h:outputText value="#{las.principal}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Installment</f:facet>
-						<h:outputText value="#{loanAccountScheduleController.installment}" />
+						<h:outputText value="#{las.installment}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">Outstanding</f:facet>
-						<h:outputText value="#{loanAccountScheduleController.period}" />
+						<h:outputText value="#{las.outstanding}" />
 					</h:column>
 				</h:dataTable>
 				<br />
