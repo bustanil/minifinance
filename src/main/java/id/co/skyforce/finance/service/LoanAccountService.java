@@ -44,8 +44,8 @@ public class LoanAccountService {
 		session = HibernateUtil.openSession();
 		try {
 			transaction = session.beginTransaction();
-			LoanAccount loanAccount = (LoanAccount) session.get(LoanAccount.class,
-					accountNumber);
+			LoanAccount loanAccount = (LoanAccount) session.get(
+					LoanAccount.class, accountNumber);
 			session.delete(loanAccount);
 			transaction.commit();
 		} catch (Exception e) {
@@ -66,6 +66,24 @@ public class LoanAccountService {
 		}
 		session.close();
 		return loanAccounts;
+	}
+
+	// TODO Test
+	public LoanAccount getLoanAccount(String accountNo) throws Exception {
+		LoanAccount loanAccount = new LoanAccount();
+		session = HibernateUtil.openSession();
+
+		try {
+			transaction = session.beginTransaction();
+			loanAccount = (LoanAccount) session.get(LoanAccount.class,
+					accountNo);
+		} catch (Exception e) {
+			transaction.rollback();
+			throw e;
+		}
+
+		session.close();
+		return loanAccount;
 	}
 
 }
