@@ -35,11 +35,13 @@ CIF
 					</h:selectOneMenu>
 				</h:panelGrid>
 
-				<h:commandButton action="#{loanAccountController.simulate}" value="Simulate" />
+				<h:commandButton value="Simulate"> 
+					<f:ajax execute="@form" listener="#{loanAccountController.simulate}" render="tableSimulate"></f:ajax>
+				</h:commandButton>
 				<br />
 				<br />
 
-				<h:dataTable var="las" value="#{loanAccountController.loanAccounts}" border="1">
+				<h:dataTable id="tableSimulate" var="las" value="#{loanAccountController.loanAccounts}" border="1">
 					<h:column>
 						<f:facet name="header">Periode</f:facet>
 						<h:outputText value="#{las.period}" />
@@ -48,6 +50,10 @@ CIF
 <!-- 						<f:facet name="header">Due Date</f:facet> -->
 <!-- 						<h:outputText value="#{loanAccountScheduleController.dueDate}" /> -->
 <!-- 					</h:column> -->
+					<h:column>
+						<f:facet name="header">Installment Balance</f:facet>
+						<h:outputText value="#{las.installmentBalance}" />
+					</h:column>
 					<h:column>
 						<f:facet name="header">Interest</f:facet>
 						<h:outputText value="#{las.interest}" />
