@@ -67,6 +67,21 @@ public class LoanAccountService {
 		session.close();
 		return loanAccounts;
 	}
+	
+	public LoanAccount getAccountNo(String accountNo){
+		Transaction transaction = null;
+		Session session = HibernateUtil.openSession();
+		LoanAccount loanAccount = null;
+
+		try {
+			transaction = session.beginTransaction();
+			loanAccount = (LoanAccount) session.get(LoanAccount.class, accountNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			transaction.rollback();
+		}
+		return loanAccount;
+	}
 
 	// TODO Test
 	public LoanAccount getLoanAccount(String accountNo) throws Exception {

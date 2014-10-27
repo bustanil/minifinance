@@ -1,18 +1,17 @@
 package id.co.skyforce.finance.controller;
 
-import id.co.skyforce.finance.model.CIF;
+import id.co.skyforce.finance.model.LoanAccount;
 import id.co.skyforce.finance.model.Payment;
+import id.co.skyforce.finance.service.LoanAccountService;
 import id.co.skyforce.finance.service.PaymentService;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -27,7 +26,19 @@ public class PaymentController {
 	private Character paymentStatus;
 
 	private Integer paymentId;
-	private PaymentService service;
+	private List<LoanAccount> loanAccounts;
+	private LoanAccountService loanAccountService;
+	PaymentService paymentService = new PaymentService();
+	Payment payment = new Payment();
+	LoanAccount loanAccount = new LoanAccount();
+	
+	public List<LoanAccount> getLoanAccounts() {
+		return loanAccounts;
+	}
+
+	public void setLoanAccounts(List<LoanAccount> loanAccounts) {
+		this.loanAccounts = loanAccounts;
+	}
 
 	public Integer getPaymentId() {
 		return paymentId;
@@ -37,13 +48,6 @@ public class PaymentController {
 		this.paymentId = paymentId;
 	}
 
-	public PaymentService getService() {
-		return service;
-	}
-
-	public void setService(PaymentService service) {
-		this.service = service;
-	}
 
 	public PaymentController() {
 		String id = FacesContext.getCurrentInstance().getExternalContext()
@@ -65,16 +69,39 @@ public class PaymentController {
 			trx.commit();
 			session.close();
 		}
+		
+		loanAccountService = new LoanAccountService();
+		this.loanAccounts = loanAccountService.getAllLoanAccount();
 	}
 
-	public void save() {
-		service = new PaymentService();
-		Payment payment = new Payment();
+	public void save() throws Exception {
+		
 		payment.setTransactionDate(new Date());
 		payment.setAmount(amount);
 		payment.setAcountNo(acountNo);
 		payment.setPaymentStatus(paymentStatus);
-		service.addPayment(payment);
+		
+		loanAccountService = new LoanAccountService();
+		loanAccount = loanAccountService.getAccountNo(acountNo);
+		
+		paymentService.addPayment(payment);
+		paymentService.payInstallment(payment);
+	}
+
+	public PaymentService getPaymentService() {
+		return paymentService;
+	}
+
+	public void setPaymentService(PaymentService paymentService) {
+		this.paymentService = paymentService;
+	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
 	}
 
 	public Integer getId() {
