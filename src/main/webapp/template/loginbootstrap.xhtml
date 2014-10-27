@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title><ui:insert name="pageTitle">Page Title</ui:insert></title>
+	<link href="/shop/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/shop/css/navbar.css" rel="stylesheet" />
+</h:head>
+<h:body>
+	<div class="container">
+
+		<ui:include src="/template/loginheader.xhtml" />
+
+		<div class="row">
+			<div class="col-md-12">
+
+				<div class="panel panel-default">
+					<div class="panel-heading"><ui:insert name="panelHeading"></ui:insert></div>
+					<div class="panel-body">
+						<ui:insert name="content">
+
+							<h3>Hello world</h3>
+
+						</ui:insert>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	<!-- /container -->
+
+	<ui:include src="/template/footer.xhtml" />
+</h:body>
+</html>

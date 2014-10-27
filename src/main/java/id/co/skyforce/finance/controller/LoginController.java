@@ -77,7 +77,7 @@ public class LoginController {
 	}
 
 
-	public void checkLogin(){
+	public String checkLogin(){
 		user.setId(id);
 		user.setUsername(username);
 		user.setPassword(password);
@@ -85,6 +85,7 @@ public class LoginController {
 		
 		LoginService loginService = new LoginService();
 		loginService.login(user);
+		return "mainblank.xhtml?faces-redirect=true";
 		
 	}
 

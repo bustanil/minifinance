@@ -1,0 +1,34 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/menucifbootstrap.xhtml">
+
+	<ui:define name="content">
+		<center>
+			<h:form>
+				<h:messages />
+
+				<h:panelGrid columns="2" border="0">
+					<center>No.CIF</center>
+					<h:selectOneMenu value="#{cIFController.cifNo}">
+						<f:selectItems value="#{cIFListController.cifList}" var="cifList"
+							itemValue="#{cifList.cifNo}" itemLabel="#{cifList.cifNo}">
+						</f:selectItems>
+					</h:selectOneMenu>
+<!-- 					<h:inputText value="#{cIFController.cifNo}" required="true" label="No Cif"/> -->
+				</h:panelGrid>
+
+
+				<h:commandButton action="#{cIFController.delete}" value="Delete"/>
+
+
+			</h:form>
+		</center>
+	</ui:define>
+
+</ui:composition>
+</html>
