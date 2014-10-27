@@ -131,7 +131,6 @@ public class PaymentService {
 					"Cicilan tidak sesuai dengan jumlah pembayaran.");
 		}
 
-		loanAccountSchedule.setOutstanding(BigDecimal.ZERO);
 		loanAccountSchedule.setPaidStatus('P');
 		payment.setPaymentStatus('P');
 
