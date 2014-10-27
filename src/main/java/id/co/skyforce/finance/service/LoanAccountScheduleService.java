@@ -45,12 +45,16 @@ public class LoanAccountScheduleService {
 	}
 
 	private static void generateScheduleWithFlatRate(LoanAccount loanAccount) {
+		int precision = 10;
+		RoundingMode roundingMode = RoundingMode.UP;
+
 		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
 		Calendar calendar = Calendar.getInstance();
 
 		BigDecimal installmentBalance = loanAccount.getPlafond();
 		BigDecimal principal = loanAccount.getPlafond().divide(
-				new BigDecimal(loanAccount.getTenure()));
+				new BigDecimal(loanAccount.getTenure()), precision,
+				roundingMode);
 		BigDecimal interestRate = LoanAccountScheduleService
 				.calculateInterestRate(loanAccount);
 		BigDecimal interest = loanAccount.getPlafond().multiply(interestRate);
@@ -69,13 +73,18 @@ public class LoanAccountScheduleService {
 
 			loanAccountSchedule.setPeriod(Integer.valueOf(i + 1));
 			loanAccountSchedule.setDueDate(dueDate);
-			loanAccountSchedule.setPrincipal(principal);
-			loanAccountSchedule.setInterest(periodInterest);
-			loanAccountSchedule.setInstallment(installment);
-			loanAccountSchedule.setOutstanding(installment);
+			loanAccountSchedule.setPrincipal(principal.setScale(2,
+					RoundingMode.UP));
+			loanAccountSchedule.setInterest(periodInterest.setScale(2,
+					RoundingMode.UP));
+			loanAccountSchedule.setInstallment(installment.setScale(2,
+					RoundingMode.UP));
+			loanAccountSchedule.setOutstanding(installment.setScale(2,
+					RoundingMode.UP));
 			loanAccountSchedule.setPaidStatus('U');
 			loanAccountSchedule.setLoanAccount(loanAccount);
-			loanAccountSchedule.setInstallmentBalance(installmentBalance);
+			loanAccountSchedule.setInstallmentBalance(installmentBalance
+					.setScale(2, RoundingMode.UP));
 
 			loanAccountSchedules.add(loanAccountSchedule);
 			installmentBalance = installmentBalance.subtract(principal);
@@ -86,12 +95,16 @@ public class LoanAccountScheduleService {
 
 	private static void generateScheduleWithEffectiveRate(
 			LoanAccount loanAccount) {
+		int precision = 10;
+		RoundingMode roundingMode = RoundingMode.UP;
+
 		List<LoanAccountSchedule> loanAccountSchedules = new ArrayList<LoanAccountSchedule>();
 		Calendar calendar = Calendar.getInstance();
 
 		BigDecimal installmentBalance = loanAccount.getPlafond();
 		BigDecimal principal = loanAccount.getPlafond().divide(
-				new BigDecimal(loanAccount.getTenure()));
+				new BigDecimal(loanAccount.getTenure()), precision,
+				roundingMode);
 		BigDecimal interestRate = LoanAccountScheduleService
 				.calculateInterestRate(loanAccount);
 		BigDecimal periodInterestRate = interestRate.divide(new BigDecimal(
@@ -111,13 +124,18 @@ public class LoanAccountScheduleService {
 
 			loanAccountSchedule.setPeriod(Integer.valueOf(i + 1));
 			loanAccountSchedule.setDueDate(dueDate);
-			loanAccountSchedule.setPrincipal(principal);
-			loanAccountSchedule.setInterest(periodInterest);
-			loanAccountSchedule.setInstallment(installment);
-			loanAccountSchedule.setOutstanding(installment);
+			loanAccountSchedule.setPrincipal(principal.setScale(2,
+					RoundingMode.UP));
+			loanAccountSchedule.setInterest(periodInterest.setScale(2,
+					RoundingMode.UP));
+			loanAccountSchedule.setInstallment(installment.setScale(2,
+					RoundingMode.UP));
+			loanAccountSchedule.setOutstanding(installment.setScale(2,
+					RoundingMode.UP));
 			loanAccountSchedule.setPaidStatus('U');
 			loanAccountSchedule.setLoanAccount(loanAccount);
-			loanAccountSchedule.setInstallmentBalance(installmentBalance);
+			loanAccountSchedule.setInstallmentBalance(installmentBalance
+					.setScale(2, RoundingMode.UP));
 
 			loanAccountSchedules.add(loanAccountSchedule);
 			installmentBalance = installmentBalance.subtract(principal);
@@ -150,13 +168,18 @@ public class LoanAccountScheduleService {
 
 			loanAccountSchedule.setPeriod(Integer.valueOf(i + 1));
 			loanAccountSchedule.setDueDate(dueDate);
-			loanAccountSchedule.setPrincipal(principal);
-			loanAccountSchedule.setInterest(periodInterest);
-			loanAccountSchedule.setInstallment(installment);
-			loanAccountSchedule.setOutstanding(installment);
+			loanAccountSchedule.setPrincipal(principal.setScale(2,
+					RoundingMode.UP));
+			loanAccountSchedule.setInterest(periodInterest.setScale(2,
+					RoundingMode.UP));
+			loanAccountSchedule.setInstallment(installment.setScale(2,
+					RoundingMode.UP));
+			loanAccountSchedule.setOutstanding(installment.setScale(2,
+					RoundingMode.UP));
 			loanAccountSchedule.setPaidStatus('U');
 			loanAccountSchedule.setLoanAccount(loanAccount);
-			loanAccountSchedule.setInstallmentBalance(installmentBalance);
+			loanAccountSchedule.setInstallmentBalance(installmentBalance
+					.setScale(2, RoundingMode.UP));
 
 			loanAccountSchedules.add(loanAccountSchedule);
 			installmentBalance = installmentBalance.subtract(principal);
