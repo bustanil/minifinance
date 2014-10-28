@@ -1,23 +1,20 @@
 
 package id.co.skyforce.finance.controller;
 
-import id.co.skyforce.finance.model.CIF;
 import id.co.skyforce.finance.model.User;
 import id.co.skyforce.finance.service.LoginService;
-import id.co.skyforce.finance.util.HibernateUtil;
 
 import java.util.Date;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 @ManagedBean
 @SessionScoped
-public class LoginController {
+public class LoginController{
 
 	private Integer id;
 	private String username;
@@ -78,15 +75,28 @@ public class LoginController {
 
 
 	public String checkLogin(){
-		user.setId(id);
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setLastLogin(new Date());
-		
-		LoginService loginService = new LoginService();
-		loginService.login(user);
-		return "mainblank.xhtml?faces-redirect=true";
-		
-	}
+			boolean result = LoginService.loginn(username, password, user);
+			if(result == true) {
+				user.setId(id);
+				user.setUsername(username);
+				user.setPassword(password);
+				user.setLastLogin(new Date());
+				
+				LoginService loginService = new LoginService();
+				loginService.loginn(username, password, user);
+				return "mainblank.xhtml?faces-redirect=true";
+			} else{
+				FacesContext.getCurrentInstance().addMessage(
+		                    null,
+		                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+		                    "Invalid Login!",
+		                    "Please Try Again!"));
+		 
+		            // invalidate session, and redirect to other pages
+		 
+		            //message = "Invalid Login. Please Try Again!";
+		            return "index.xhtml?faces-redirect=true";
+			}
+		}
 
 }
