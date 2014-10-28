@@ -4,20 +4,72 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+<h:body>
+	<ui:composition template="/template/menucifbootstrap.xhtml">
 
-<ui:composition template="/template/menucifbootstrap.xhtml">
-
-	<ui:define name="content">
-		<center>
-			<h:form>
-				<h:messages />
-
-
-
-
-			</h:form>
-		</center>
-	</ui:define>
-
-</ui:composition>
+		<ui:define name="content">
+			<center>
+				<h:form>
+					<h:messages />
+					<div>
+						<h:outputLabel value="Search No Cif" />
+						<h:inputText value="#{cIFController.search}" />
+						<h:commandButton actionListener="#{cIFController.search}" value="Search" />
+					</div>
+					<h:dataTable var="l" value="#{cIFController.ciflist}" border="1">
+						<h:column>
+							<f:facet name="header">No. CIF</f:facet>
+							<h:outputText value="#{l.cifNo}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nama Depan</f:facet>
+							<h:outputText value="#{l.firstName}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nama Belakang</f:facet>
+							<h:outputText value="#{l.lastName}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Email</f:facet>
+							<h:outputText value="#{l.email}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Tanggal Lahir</f:facet>
+							<h:outputText value="#{l.birthDate}">
+								<f:convertDateTime pattern="dd MMMM yyyy" />
+							</h:outputText>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nama Orang Tua</f:facet>
+							<h:outputText value="#{l.motherMaidenName}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nomor ID</f:facet>
+							<h:outputText value="#{l.idNumber}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Tipe ID</f:facet>
+							<h:outputText value="#{l.idType}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Action</f:facet>
+							<h:link value="Edit" outcome="form">
+								<f:param name="noCif" value="#{l.cifNo}" />
+							</h:link>
+							<h:outputText value=" " />
+							<h:commandLink value="Delete"
+								actionListener="#{cIFController.delete}">
+								<f:param name="noCif" value="#{l.cifNo}" />
+							</h:commandLink>
+						</h:column>
+					</h:dataTable>
+					<h:link value="New CIF" outcome="form" />
+				</h:form>
+			</center>
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>

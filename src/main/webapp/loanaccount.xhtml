@@ -18,7 +18,7 @@
 				<h:panelGrid columns="2" border="0">
 CIF
 <h:selectOneMenu value="#{loanAccountController.cifNo}">
-						<f:selectItems value="#{cIFListController.cifList}" var="cifList"
+						<f:selectItems value="#{cIFController.ciflist}" var="cifList"
 							itemValue="#{cifList.cifNo}" itemLabel="#{cifList.cifNo}">
 						</f:selectItems>
 					</h:selectOneMenu>
@@ -44,7 +44,7 @@ CIF
 				<br />
 				<br />
 
-				<h:dataTable id="tableSimulate" var="las" value="#{loanAccountController.loanAccounts}"  border="0">
+				<h:dataTable id="tableSimulate" var="las" value="#{loanAccountController.loanAccounts}"  border="4">
 					<h:column>
 						<f:facet name="header">Periode</f:facet>
 						<h:outputText value="#{las.period}" />
