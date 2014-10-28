@@ -3,6 +3,7 @@ package id.co.skyforce.finance.controller;
 
 import id.co.skyforce.finance.model.User;
 import id.co.skyforce.finance.service.LoginService;
+import id.co.skyforce.finance.service.LogoutService;
 
 import java.util.Date;
 
@@ -10,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 
 @ManagedBean
@@ -98,5 +100,11 @@ public class LoginController{
 		            return "index.xhtml?faces-redirect=true";
 			}
 		}
+	
+	public String logout(){
+		HttpSession session = LogoutService.getSession();
+		session.invalidate();
+		return "index";
+	}
 
 }
