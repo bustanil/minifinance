@@ -31,7 +31,7 @@ public class PaymentController {
 	PaymentService paymentService = new PaymentService();
 	Payment payment = new Payment();
 	LoanAccount loanAccount = new LoanAccount();
-	
+
 	public List<LoanAccount> getLoanAccounts() {
 		return loanAccounts;
 	}
@@ -47,7 +47,6 @@ public class PaymentController {
 	public void setPaymentId(Integer paymentId) {
 		this.paymentId = paymentId;
 	}
-
 
 	public PaymentController() {
 		String id = FacesContext.getCurrentInstance().getExternalContext()
@@ -69,21 +68,22 @@ public class PaymentController {
 			trx.commit();
 			session.close();
 		}
-		
+
 		loanAccountService = new LoanAccountService();
 		this.loanAccounts = loanAccountService.getAllLoanAccount();
 	}
 
 	public void save() throws Exception {
-		
+
 		payment.setTransactionDate(new Date());
 		payment.setAmount(amount);
 		payment.setAcountNo(acountNo);
-		payment.setPaymentStatus(paymentStatus);
-		
+		// payment.setPaymentStatus(paymentStatus);
+		payment.setPaymentStatus('N');
+
 		loanAccountService = new LoanAccountService();
 		loanAccount = loanAccountService.getAccountNo(acountNo);
-		
+
 		paymentService.addPayment(payment);
 		paymentService.payInstallment(payment);
 	}
