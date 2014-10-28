@@ -1,10 +1,8 @@
 
 package id.co.skyforce.finance.controller;
 
-import id.co.skyforce.finance.model.CIF;
 import id.co.skyforce.finance.model.User;
 import id.co.skyforce.finance.service.LoginService;
-import id.co.skyforce.finance.util.HibernateUtil;
 
 import java.util.Date;
 
@@ -13,12 +11,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 @ManagedBean
 @SessionScoped
-public class LoginController {
+public class LoginController{
 
 	private Integer id;
 	private String username;
@@ -102,7 +98,5 @@ public class LoginController {
 		            return "index.xhtml?faces-redirect=true";
 			}
 		}
-		
-	
 
 }
