@@ -1,0 +1,69 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/template/menucifbootstrap.xhtml">
+
+	<ui:define name="content">
+		<center>
+			<h:form>
+				<h:messages />
+
+				<h:panelGrid columns="2" border="0">
+					<center>No.CIF</center>
+					<h:selectOneMenu value="#{cIFController.cifNo}">
+						<f:selectItems value="#{cIFListController.cifList}" var="cifList"
+							itemValue="#{cifList.cifNo}" itemLabel="#{cifList.cifNo}">
+						</f:selectItems>
+					</h:selectOneMenu>
+					<br />
+					<center>Password</center>
+					<h:inputSecret value="#{cIFController.password}" required="true"
+						label="Password" />
+					<br />
+					<center>Email</center>
+					<h:inputText value="#{cIFController.email}" required="true"
+						label="Email" />
+					<br />
+					<center>Nama Depan</center>
+					<h:inputText value="#{cIFController.firstName}" required="true"
+						label="Nama Depan" />
+					<br />
+					<center>Nama Belakang</center>
+					<h:inputText value="#{cIFController.lastName}" required="true"
+						label="Nama Belakang" />
+					<br />
+					<center>Tanggal Lahir</center>
+					<h:inputText value="#{cIFController.birthDate}" required="true"
+						label="Tanggal Lahir">
+						<f:convertDateTime pattern="yyyy/MM/dd" />
+					</h:inputText>
+					<br />
+					<center>Nama Orang Tua</center>
+					<h:inputText value="#{cIFController.motherMaidenName}"
+						required="true" label="Nama Orang Tua" />
+					<br />
+					<center>Nomor ID</center>
+					<h:inputText value="#{cIFController.idNumber}" required="true"
+						label="Nomor Id" />
+					<br />
+					<center>Tipe ID</center>
+					<h:selectOneMenu value="#{cIFController.idType}">
+						<f:selectItem itemValue="K" itemLabel="KTP" />
+						<f:selectItem itemValue="S" itemLabel="SIM" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+
+
+				<h:commandButton action="#{cIFController.edit}" value="Edit" />
+
+
+			</h:form>
+		</center>
+	</ui:define>
+
+</ui:composition>
+</html>

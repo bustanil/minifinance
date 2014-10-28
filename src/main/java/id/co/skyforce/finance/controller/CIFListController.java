@@ -3,6 +3,7 @@ package id.co.skyforce.finance.controller;
 import java.util.List;
 
 import id.co.skyforce.finance.model.CIF;
+import id.co.skyforce.finance.service.CIFService;
 import id.co.skyforce.finance.util.HibernateUtil;
 
 import javax.faces.bean.ManagedBean;
@@ -17,10 +18,10 @@ public class CIFListController {
 	private List<CIF> cifList;
 
 	public CIFListController() {
-		Session session = HibernateUtil.openSession();
-		Transaction trx = session.beginTransaction();
+		CIFService service = new CIFService();
 
-		cifList = session.createQuery("from CIF").list();
+		cifList = service.getAllCif();
+		
 
 	}
 
