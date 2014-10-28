@@ -79,6 +79,10 @@ public class PaymentService {
 			throw new Exception("Payment tidak boleh null.");
 		}
 
+		if (payment.getPaymentStatus() == null) {
+			throw new Exception("Payment status tidak boleh null.");
+		}
+
 		if (!payment.getPaymentStatus().equals('N')) {
 			throw new Exception(
 					"Payment tidak dapat dibayarkan karena status payment bukan 'N' (New).");
