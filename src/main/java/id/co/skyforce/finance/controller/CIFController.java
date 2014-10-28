@@ -83,7 +83,7 @@ public class CIFController {
 
 	public void delete() {
 		service = new CIFService();
-		service.deleteCif(cifNo);
+		service.deleteCif(this.cifNo);
 	}
 
 	public void edit() {
