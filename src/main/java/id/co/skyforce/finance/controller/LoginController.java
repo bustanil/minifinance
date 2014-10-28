@@ -97,7 +97,7 @@ public class LoginController{
 		            // invalidate session, and redirect to other pages
 		 
 		            //message = "Invalid Login. Please Try Again!";
-		            return "index.xhtml?faces-redirect=true";
+		            return "mainblank.xhtml?faces-redirect=true";
 			}
 		}
 	
