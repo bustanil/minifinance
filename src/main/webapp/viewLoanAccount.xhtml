@@ -3,46 +3,45 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<head>
-<link href="/shop/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/shop/css/navbar.css" rel="stylesheet" />
-</head>
-<ui:composition template="/template/bootstrap.xhtml">
 
+<h:head></h:head>
+<ui:composition template="/template/menuVIewLoanAccountxhtml.xhtml">
 	<ui:define name="content">
-
 		<center>
 			<h:form>
 
 
 				<h:panelGrid columns="2" border="0">
-CIF
-<h:selectOneMenu value="#{loanAccountController.cifNo}">
+					<h:outputLabel value="CIF" />
+					<h:selectOneMenu id="cifNo" value="#{loanAccountController.cifNo}">
 						<f:selectItems value="#{cIFController.ciflist}" var="cifList"
-							itemValue="#{cifList.cifNo}" itemLabel="#{cifList.cifNo}">
+							itemValue="#{cifList.cifNo}" itemLabel="#{cifList.cifNo}">						
 						</f:selectItems>
 					</h:selectOneMenu>
-		Account No.
-		<h:inputText value="#{loanAccountController.accountNo}" />
-		Plafond
-		<h:inputText value="#{loanAccountController.plafond}" />
-		Tenure
-		<h:inputText value="#{loanAccountController.tenure}" />
-		Interest rate
-		<h:inputText value="#{loanAccountController.interestRate}" />
-		Interest type
-		<h:selectOneMenu value="#{loanAccountController.interestType}">
+					<h:outputLabel value="Loan Account" />
+					<h:selectOneMenu value="">
+						<f:selectItems value="#{loanAccountController.loanAccounts2}"
+							var="accNoList" itemValue="#{accNoList.accountNo}"
+							itemLabel="#{accNoList.accountNo}">
+						</f:selectItems>
+							<f:ajax execute="@form" listener="#{loanAccountController.getData}" render="tableSimulate"></f:ajax>
+					</h:selectOneMenu>
+					<h:outputLabel value="Account No. " />
+					<h:inputText value="#{loanAccountController.accountNo}" />
+					<h:outputLabel value="Plafond" />
+					<h:inputText value="#{loanAccountController.plafond}" />
+					<h:outputLabel value="Tenure" />
+					<h:inputText value="#{loanAccountController.tenure}" />
+					<h:outputLabel value="Interest Rate" />
+					<h:inputText value="#{loanAccountController.interestRate}" />
+					<h:outputLabel value="Interest Type" />
+					<h:selectOneMenu value="#{loanAccountController.interestType}">
 						<f:selectItem itemValue="F" itemLabel="Flat" />
 						<f:selectItem itemValue="E" itemLabel="Efektif" />
 						<f:selectItem itemValue="A" itemLabel="Anuitas" />
 					</h:selectOneMenu>
 				</h:panelGrid>
 
-				<h:commandButton value="Simulate">
-					<f:ajax execute="@form"
-						listener="#{loanAccountController.simulate}"
-						render="tableSimulate"></f:ajax>
-				</h:commandButton>
 				<br />
 				<br />
 
@@ -78,16 +77,9 @@ CIF
 					</h:column>
 				</h:dataTable>
 				<br />
-				<h:commandButton action="#{loanAccountController.save}" value="Save" />
 			</h:form>
 		</center>
 
-
 	</ui:define>
-
 </ui:composition>
-
-
-
-
 </html>

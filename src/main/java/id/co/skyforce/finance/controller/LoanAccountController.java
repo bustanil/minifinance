@@ -18,6 +18,8 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class LoanAccountController {
 
+	private LoanAccountService service;
+	
 	private String accountNo;
 	private BigDecimal plafond;
 	private Integer tenure;
@@ -26,6 +28,7 @@ public class LoanAccountController {
 	private Date startDate;
 	private String cifNo;
 	private List<LoanAccountSchedule> loanAccounts;
+	private List<LoanAccount> loanAccounts2;
 	private CIF cif;
 	private CIFService cifService;
 	
@@ -38,6 +41,16 @@ public class LoanAccountController {
 	private Character paidStatus;
 	
 	LoanAccount loanAccount = new LoanAccount();
+	
+	public LoanAccountController() {
+		service = new LoanAccountService();
+		loanAccounts2 =  service.getAllLoanAccount();
+	}
+	
+	public void getData() {
+		service = new LoanAccountService();
+		loanAccounts2 = (List<LoanAccount>) service.getAccountNo(accountNo);
+	}
 	
 	public void simulate() throws Exception {
 		loanAccount.setAccountNo(accountNo);
@@ -70,6 +83,17 @@ public class LoanAccountController {
 		
 		loanAccountService.addAcount(loanAccount);
 	}
+	
+	
+	public List<LoanAccount> getLoanAccounts2() {
+		return loanAccounts2;
+	}
+
+
+	public void setLoanAccounts2(List<LoanAccount> loanAccounts2) {
+		this.loanAccounts2 = loanAccounts2;
+	}
+
 
 	public List<LoanAccountSchedule> getLoanAccounts() {
 		return loanAccounts;
